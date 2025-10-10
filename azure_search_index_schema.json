@@ -1,0 +1,219 @@
+{
+  "name": "technology-tools-index",
+  "fields": [
+    {
+      "name": "id",
+      "type": "Edm.String",
+      "key": true,
+      "searchable": false,
+      "filterable": true,
+      "sortable": true,
+      "facetable": false,
+      "retrievable": true
+    },
+    {
+      "name": "Capabilities",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": true,
+      "sortable": true,
+      "facetable": true,
+      "retrievable": true,
+      "analyzer": "standard.lucene"
+    },
+    {
+      "name": "SubCapability",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": true,
+      "sortable": true,
+      "facetable": true,
+      "retrievable": true,
+      "analyzer": "standard.lucene"
+    },
+    {
+      "name": "TEBStatus",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": true,
+      "sortable": true,
+      "facetable": true,
+      "retrievable": true,
+      "analyzer": "standard.lucene"
+    },
+    {
+      "name": "NameofTools",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": true,
+      "sortable": true,
+      "facetable": true,
+      "retrievable": true,
+      "analyzer": "standard.lucene"
+    },
+    {
+      "name": "Version",
+      "type": "Edm.String",
+      "searchable": false,
+      "filterable": true,
+      "sortable": true,
+      "facetable": true,
+      "retrievable": true
+    },
+    {
+      "name": "StandardsComments",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": false,
+      "sortable": false,
+      "facetable": false,
+      "retrievable": true,
+      "analyzer": "standard.lucene"
+    },
+    {
+      "name": "EANotes",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": false,
+      "sortable": false,
+      "facetable": false,
+      "retrievable": true,
+      "analyzer": "standard.lucene"
+    },
+    {
+      "name": "Manufacturer",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": true,
+      "sortable": true,
+      "facetable": true,
+      "retrievable": true,
+      "analyzer": "standard.lucene"
+    },
+    {
+      "name": "StandardCategory",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": true,
+      "sortable": true,
+      "facetable": true,
+      "retrievable": true,
+      "analyzer": "standard.lucene"
+    },
+    {
+      "name": "EAReferenceID",
+      "type": "Edm.String",
+      "searchable": false,
+      "filterable": true,
+      "sortable": true,
+      "facetable": true,
+      "retrievable": true
+    },
+    {
+      "name": "Description",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": false,
+      "sortable": false,
+      "facetable": false,
+      "retrievable": true,
+      "analyzer": "standard.lucene"
+    },
+    {
+      "name": "MetaTags",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": true,
+      "sortable": false,
+      "facetable": true,
+      "retrievable": true,
+      "analyzer": "standard.lucene"
+    },
+    {
+      "name": "MetaTagsDescription",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": false,
+      "sortable": false,
+      "facetable": false,
+      "retrievable": true,
+      "analyzer": "standard.lucene"
+    },
+    {
+      "name": "CapabilityManager",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": true,
+      "sortable": true,
+      "facetable": true,
+      "retrievable": true,
+      "analyzer": "standard.lucene"
+    },
+    {
+      "name": "content_vector",
+      "type": "Collection(Edm.Single)",
+      "searchable": true,
+      "filterable": false,
+      "sortable": false,
+      "facetable": false,
+      "retrievable": true,
+      "dimensions": 3072,
+      "vectorSearchProfile": "default-vector-profile"
+    },
+    {
+      "name": "combined_text",
+      "type": "Edm.String",
+      "searchable": true,
+      "filterable": false,
+      "sortable": false,
+      "facetable": false,
+      "retrievable": true,
+      "analyzer": "standard.lucene"
+    }
+  ],
+  "vectorSearch": {
+    "profiles": [
+      {
+        "name": "default-vector-profile",
+        "algorithm": "hnsw-cpu"
+      }
+    ],
+    "algorithms": [
+      {
+        "name": "hnsw-cpu",
+        "kind": "hnsw"
+      }
+    ]
+  },
+  "semantic": {
+    "configurations": [
+      {
+        "name": "default-semantic-config",
+        "prioritizedFields": {
+          "titleField": {
+            "fieldName": "NameofTools"
+          },
+          "prioritizedContentFields": [
+            {
+              "fieldName": "Description"
+            },
+            {
+              "fieldName": "combined_text"
+            }
+          ],
+          "prioritizedKeywordsFields": [
+            {
+              "fieldName": "Capabilities"
+            },
+            {
+              "fieldName": "SubCapability"
+            },
+            {
+              "fieldName": "MetaTags"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

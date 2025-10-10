@@ -1,0 +1,14 @@
+# Azure AI Search Configuration
+AZURE_SEARCH_ENDPOINT=https://your-search-service.search.windows.net
+AZURE_SEARCH_KEY=your-search-service-admin-key
+
+# Azure OpenAI Configuration
+OPENAI_API_KEY=your-openai-api-key
+OPENAI_ENDPOINT=https://your-openai-resource.openai.azure.com/
+OPENAI_API_VERSION=2024-02-15-preview
+EMBEDDING_MODEL=text-embedding-3-small
+
+# Azure Blob Storage Configuration
+AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=https;AccountName=your-storage-account;AccountKey=your-storage-key;EndpointSuffix=core.windows.net
+BLOB_CONTAINER_NAME=csv-data
+
