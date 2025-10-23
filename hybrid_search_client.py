@@ -6,7 +6,7 @@ Supports vector search, keyword search, semantic search, and filtering
 import os
 import json
 from typing import List, Dict, Any, Optional
-import openai
+from openai import AzureOpenAI
 from azure.search.documents import SearchClient
 from azure.search.documents.models import (
     VectorizedQuery,
@@ -47,11 +47,12 @@ class HybridSearchClient:
                 credential=credential
             )
             
-            # OpenAI client for embeddings
-            openai.api_key = self.openai_api_key
-            openai.api_base = self.openai_endpoint
-            openai.api_version = self.openai_api_version
-            openai.api_type = "azure"
+            # Azure OpenAI client for embeddings
+            self.openai_client = AzureOpenAI(
+                api_key=self.openai_api_key,
+                api_version=self.openai_api_version,
+                azure_endpoint=self.openai_endpoint
+            )
             
             print("✅ Hybrid Search Client initialized successfully")
             
@@ -62,11 +63,11 @@ class HybridSearchClient:
     def create_embedding(self, text: str) -> List[float]:
         """Create embedding for text using Azure OpenAI"""
         try:
-            response = openai.Embedding.create(
+            response = self.openai_client.embeddings.create(
                 input=text,
-                engine=self.embedding_model
+                model=self.embedding_model
             )
-            return response['data'][0]['embedding']
+            return response.data[0].embedding
         except Exception as e:
             print(f"❌ Error creating embedding: {str(e)}")
             return []
