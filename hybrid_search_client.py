@@ -54,10 +54,10 @@ class HybridSearchClient:
                 azure_endpoint=self.openai_endpoint
             )
             
-            print("✅ Hybrid Search Client initialized successfully")
+            print("Hybrid Search Client initialized successfully")
             
         except Exception as e:
-            print(f"❌ Error initializing search client: {str(e)}")
+            print(f"Error initializing search client: {str(e)}")
             raise
     
     def create_embedding(self, text: str) -> List[float]:
@@ -69,7 +69,7 @@ class HybridSearchClient:
             )
             return response.data[0].embedding
         except Exception as e:
-            print(f"❌ Error creating embedding: {str(e)}")
+            print(f"Error creating embedding: {str(e)}")
             return []
     
     def keyword_search(self, 
@@ -110,7 +110,7 @@ class HybridSearchClient:
             }
             
         except Exception as e:
-            print(f"❌ Error in keyword search: {str(e)}")
+            print(f"Error in keyword search: {str(e)}")
             return {"error": str(e)}
     
     def vector_search(self, 
@@ -163,7 +163,7 @@ class HybridSearchClient:
             }
             
         except Exception as e:
-            print(f"❌ Error in vector search: {str(e)}")
+            print(f"Error in vector search: {str(e)}")
             return {"error": str(e)}
     
     def hybrid_search(self, 
@@ -223,7 +223,7 @@ class HybridSearchClient:
             }
             
         except Exception as e:
-            print(f"❌ Error in hybrid search: {str(e)}")
+            print(f"Error in hybrid search: {str(e)}")
             return {"error": str(e)}
     
     def filter_search(self, 
@@ -260,7 +260,7 @@ class HybridSearchClient:
             }
             
         except Exception as e:
-            print(f"❌ Error in filter search: {str(e)}")
+            print(f"Error in filter search: {str(e)}")
             return {"error": str(e)}
     
     def get_facet_counts(self, 
@@ -295,37 +295,37 @@ class HybridSearchClient:
             }
             
         except Exception as e:
-            print(f"❌ Error getting facet counts: {str(e)}")
+            print(f"Error getting facet counts: {str(e)}")
             return {"error": str(e)}
     
     def search_with_examples(self):
         """Demonstrate various search capabilities with examples"""
-        print("🔍 Azure AI Search Examples")
+        print("Azure AI Search Examples")
         print("=" * 50)
         
         # Example 1: Filter by TEB Status
-        print("\n1️⃣ Filter by TEB Status - TEB Approved tools:")
+        print("\n1. Filter by TEB Status - TEB Approved tools:")
         result = self.filter_search("TEBStatus eq 'TEB Approved'")
         print(f"Found {result.get('total_count', 0)} TEB Approved tools")
         for i, doc in enumerate(result.get('results', [])[:3]):
             print(f"  {i+1}. {doc.get('NameofTools')} - {doc.get('Manufacturer')}")
         
         # Example 2: Filter by Manufacturer
-        print("\n2️⃣ Filter by Manufacturer - Google tools:")
+        print("\n2. Filter by Manufacturer - Google tools:")
         result = self.filter_search("Manufacturer eq 'Google'")
         print(f"Found {result.get('total_count', 0)} Google tools")
         for i, doc in enumerate(result.get('results', [])[:3]):
             print(f"  {i+1}. {doc.get('NameofTools')} - {doc.get('TEBStatus')}")
         
         # Example 3: Hybrid search for authentication tools
-        print("\n3️⃣ Hybrid search for authentication tools:")
+        print("\n3. Hybrid search for authentication tools:")
         result = self.hybrid_search("authentication tools")
         print(f"Found {result.get('total_count', 0)} authentication-related tools")
         for i, doc in enumerate(result.get('results', [])[:3]):
             print(f"  {i+1}. {doc.get('NameofTools')} - {doc.get('Capabilities')}")
         
         # Example 4: Hybrid search with filter - TEB Approved pub/sub tools
-        print("\n4️⃣ Hybrid search with filter - TEB Approved pub/sub tools:")
+        print("\n4. Hybrid search with filter - TEB Approved pub/sub tools:")
         result = self.hybrid_search(
             "pub sub messaging", 
             filters="TEBStatus eq 'TEB Approved'"
@@ -335,14 +335,14 @@ class HybridSearchClient:
             print(f"  {i+1}. {doc.get('NameofTools')} - {doc.get('Manufacturer')}")
         
         # Example 5: Keyword search for specific capability
-        print("\n5️⃣ Keyword search for DevOps tools:")
+        print("\n5. Keyword search for DevOps tools:")
         result = self.keyword_search("DevOps")
         print(f"Found {result.get('total_count', 0)} DevOps tools")
         for i, doc in enumerate(result.get('results', [])[:3]):
             print(f"  {i+1}. {doc.get('NameofTools')} - {doc.get('SubCapability')}")
         
         # Example 6: Get facet counts
-        print("\n6️⃣ Facet counts for TEB Status:")
+        print("\n6. Facet counts for TEB Status:")
         result = self.get_facet_counts(facets=["TEBStatus"])
         facet_counts = result.get('facet_counts', {}).get('TEBStatus', [])
         for facet in facet_counts:
@@ -358,7 +358,7 @@ def main():
         search_client.search_with_examples()
         
     except Exception as e:
-        print(f"❌ Main execution error: {str(e)}")
+        print(f"Main execution error: {str(e)}")
 
 if __name__ == "__main__":
     main()

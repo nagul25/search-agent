@@ -63,10 +63,10 @@ class AzureSearchDataIngestion:
                     self.blob_connection_string
                 )
             
-            print("✅ All Azure clients initialized successfully")
+            print("All Azure clients initialized successfully")
             
         except Exception as e:
-            print(f"❌ Error initializing clients: {str(e)}")
+            print(f"Error initializing clients: {str(e)}")
             raise
     
     def create_embedding(self, text: str) -> List[float]:
@@ -86,7 +86,7 @@ class AzureSearchDataIngestion:
             )
             return response.data[0].embedding
         except Exception as e:
-            print(f"❌ Error creating embedding: {str(e)}")
+            print(f"Error creating embedding: {str(e)}")
             return []
     
     def process_csv_data(self, csv_file_path: str) -> List[Dict[str, Any]]:
@@ -94,7 +94,7 @@ class AzureSearchDataIngestion:
         try:
             # Read CSV file
             df = pd.read_csv(csv_file_path)
-            print(f"📊 Loaded CSV with {len(df)} rows")
+            print(f"Loaded CSV with {len(df)} rows")
             
             documents = []
             
@@ -135,45 +135,45 @@ class AzureSearchDataIngestion:
                 }
                 
                 # Create embedding for the combined text
-                print(f"🔄 Creating embedding for row {index + 1}/{len(df)}: {doc['NameofTools']}")
+                print(f"Creating embedding for row {index + 1}/{len(df)}: {doc['NameofTools']}")
                 embedding = self.create_embedding(combined_text)
                 if embedding:
                     doc["content_vector"] = embedding
                 
                 documents.append(doc)
             
-            print(f"✅ Processed {len(documents)} documents")
+            print(f"Processed {len(documents)} documents")
             return documents
             
         except Exception as e:
-            print(f"❌ Error processing CSV data: {str(e)}")
+            print(f"Error processing CSV data: {str(e)}")
             raise
     
     def upload_documents_batch(self, documents: List[Dict[str, Any]], batch_size: int = 100):
         """Upload documents to Azure AI Search in batches"""
         try:
             total_docs = len(documents)
-            print(f"📤 Uploading {total_docs} documents in batches of {batch_size}")
+            print(f"Uploading {total_docs} documents in batches of {batch_size}")
             
             for i in range(0, total_docs, batch_size):
                 batch = documents[i:i + batch_size]
-                print(f"📦 Uploading batch {i//batch_size + 1}/{(total_docs + batch_size - 1)//batch_size}")
+                print(f"Uploading batch {i//batch_size + 1}/{(total_docs + batch_size - 1)//batch_size}")
                 
                 result = self.search_client.upload_documents(batch)
                 
                 # Check for errors
                 failed_docs = [doc for doc in result if not doc.succeeded]
                 if failed_docs:
-                    print(f"⚠️ {len(failed_docs)} documents failed to upload")
+                    print(f"Warning: {len(failed_docs)} documents failed to upload")
                     for doc in failed_docs:
                         print(f"   Error: {doc.error_message}")
                 else:
-                    print(f"✅ Batch uploaded successfully")
+                    print(f"Batch uploaded successfully")
             
-            print(f"🎉 All documents uploaded to Azure AI Search")
+            print(f"All documents uploaded to Azure AI Search")
             
         except Exception as e:
-            print(f"❌ Error uploading documents: {str(e)}")
+            print(f"Error uploading documents: {str(e)}")
             raise
     
     def download_csv_from_blob(self, blob_name: str, local_path: str = None) -> str:
@@ -190,20 +190,20 @@ class AzureSearchDataIngestion:
             with open(local_path, "wb") as download_file:
                 download_file.write(blob_client.download_blob().readall())
             
-            print(f"✅ Downloaded {blob_name} to {local_path}")
+            print(f"Downloaded {blob_name} to {local_path}")
             return local_path
             
         except Exception as e:
-            print(f"❌ Error downloading CSV from blob: {str(e)}")
+            print(f"Error downloading CSV from blob: {str(e)}")
             raise
     
     def delete_index(self):
         """Delete the search index if it exists"""
         try:
             self.index_client.delete_index(self.search_index_name)
-            print(f"🗑️ Deleted index '{self.search_index_name}'")
+            print(f"Deleted index '{self.search_index_name}'")
         except Exception as e:
-            print(f"ℹ️ Index '{self.search_index_name}' doesn't exist or couldn't be deleted: {str(e)}")
+            print(f"Index '{self.search_index_name}' doesn't exist or couldn't be deleted: {str(e)}")
     
     def create_index(self):
         """Create the search index if it doesn't exist"""
@@ -211,7 +211,7 @@ class AzureSearchDataIngestion:
             # Check if index exists
             try:
                 self.index_client.get_index(self.search_index_name)
-                print(f"📋 Index '{self.search_index_name}' already exists")
+                print(f"Index '{self.search_index_name}' already exists")
                 return
             except:
                 pass
@@ -233,21 +233,21 @@ class AzureSearchDataIngestion:
             response = requests.post(url, headers=headers, json=index_schema_dict)
             
             if response.status_code == 201:
-                print(f"✅ Created index '{self.search_index_name}'")
+                print(f"Created index '{self.search_index_name}'")
             elif response.status_code == 409:
-                print(f"📋 Index '{self.search_index_name}' already exists")
+                print(f"Index '{self.search_index_name}' already exists")
             else:
-                print(f"❌ Error creating index: {response.status_code} - {response.text}")
+                print(f"Error creating index: {response.status_code} - {response.text}")
                 raise Exception(f"Failed to create index: {response.text}")
             
         except Exception as e:
-            print(f"❌ Error creating index: {str(e)}")
+            print(f"Error creating index: {str(e)}")
             raise
     
     def run_full_ingestion(self, csv_file_path: str = None, blob_name: str = None):
         """Run the complete data ingestion process"""
         try:
-            print("🚀 Starting Azure AI Search data ingestion...")
+            print("Starting Azure AI Search data ingestion...")
             
             # Step 1: Delete and recreate index with correct dimensions
             self.delete_index()
@@ -255,7 +255,7 @@ class AzureSearchDataIngestion:
             
             # Step 2: Get CSV data
             if blob_name:
-                print(f"📥 Downloading CSV from blob: {blob_name}")
+                print(f"Downloading CSV from blob: {blob_name}")
                 csv_file_path = self.download_csv_from_blob(blob_name)
             elif not csv_file_path:
                 csv_file_path = "technology_standard_list.csv"
@@ -266,10 +266,10 @@ class AzureSearchDataIngestion:
             # Step 4: Upload documents
             self.upload_documents_batch(documents)
             
-            print("🎉 Data ingestion completed successfully!")
+            print("Data ingestion completed successfully!")
             
         except Exception as e:
-            print(f"❌ Error in full ingestion: {str(e)}")
+            print(f"Error in full ingestion: {str(e)}")
             raise
 
 def main():
@@ -285,7 +285,7 @@ def main():
         # ingestion.run_full_ingestion(blob_name="technology_standard_list.csv")
         
     except Exception as e:
-        print(f"❌ Main execution error: {str(e)}")
+        print(f"Main execution error: {str(e)}")
 
 if __name__ == "__main__":
     main()

@@ -32,19 +32,19 @@ class AzureBlobIntegration:
             self.connection_string
         )
         
-        logger.info("✅ Azure Blob Storage client initialized")
+        logger.info("Azure Blob Storage client initialized")
     
     def create_container_if_not_exists(self, container_name: Optional[str] = None):
         """Create blob container if it doesn't exist"""
         try:
             container_name = container_name or self.container_name
             self.blob_service_client.create_container(container_name)
-            logger.info(f"✅ Created container: {container_name}")
+            logger.info(f"Created container: {container_name}")
         except Exception as e:
             if "ContainerAlreadyExists" in str(e):
-                logger.info(f"📁 Container {container_name} already exists")
+                logger.info(f"Container {container_name} already exists")
             else:
-                logger.error(f"❌ Error creating container: {str(e)}")
+                logger.error(f"Error creating container: {str(e)}")
                 raise
     
     def upload_csv_to_blob(self, 
@@ -79,11 +79,11 @@ class AzureBlobIntegration:
                 blob_client.upload_blob(data, overwrite=True)
             
             blob_url = blob_client.url
-            logger.info(f"✅ Uploaded {local_file_path} to {blob_url}")
+            logger.info(f"Uploaded {local_file_path} to {blob_url}")
             return blob_url
             
         except Exception as e:
-            logger.error(f"❌ Error uploading CSV to blob: {str(e)}")
+            logger.error(f"Error uploading CSV to blob: {str(e)}")
             raise
     
     def download_csv_from_blob(self, 
@@ -113,14 +113,14 @@ class AzureBlobIntegration:
             with open(local_file_path, "wb") as download_file:
                 download_file.write(blob_client.download_blob().readall())
             
-            logger.info(f"✅ Downloaded {blob_name} to {local_file_path}")
+            logger.info(f"Downloaded {blob_name} to {local_file_path}")
             return local_file_path
             
         except ResourceNotFoundError:
-            logger.error(f"❌ Blob {blob_name} not found in container {container_name}")
+            logger.error(f"Blob {blob_name} not found in container {container_name}")
             raise
         except Exception as e:
-            logger.error(f"❌ Error downloading CSV from blob: {str(e)}")
+            logger.error(f"Error downloading CSV from blob: {str(e)}")
             raise
     
     def list_blobs(self, 
@@ -150,11 +150,11 @@ class AzureBlobIntegration:
                     "url": f"{self.blob_service_client.url}/{container_name}/{blob.name}"
                 })
             
-            logger.info(f"📋 Found {len(blobs)} blobs in container {container_name}")
+            logger.info(f"Found {len(blobs)} blobs in container {container_name}")
             return blobs
             
         except Exception as e:
-            logger.error(f"❌ Error listing blobs: {str(e)}")
+            logger.error(f"Error listing blobs: {str(e)}")
             raise
     
     def delete_blob(self, 
@@ -178,14 +178,14 @@ class AzureBlobIntegration:
             )
             
             blob_client.delete_blob()
-            logger.info(f"✅ Deleted blob: {blob_name}")
+            logger.info(f"Deleted blob: {blob_name}")
             return True
             
         except ResourceNotFoundError:
-            logger.warning(f"⚠️ Blob {blob_name} not found")
+            logger.warning(f"Blob {blob_name} not found")
             return False
         except Exception as e:
-            logger.error(f"❌ Error deleting blob: {str(e)}")
+            logger.error(f"Error deleting blob: {str(e)}")
             raise
     
     def get_blob_properties(self, 
@@ -220,10 +220,10 @@ class AzureBlobIntegration:
             }
             
         except ResourceNotFoundError:
-            logger.error(f"❌ Blob {blob_name} not found")
+            logger.error(f"Blob {blob_name} not found")
             raise
         except Exception as e:
-            logger.error(f"❌ Error getting blob properties: {str(e)}")
+            logger.error(f"Error getting blob properties: {str(e)}")
             raise
     
     def process_csv_from_blob(self, 
@@ -249,11 +249,11 @@ class AzureBlobIntegration:
             # Clean up local file
             os.remove(local_path)
             
-            logger.info(f"✅ Processed CSV from blob {blob_name}: {len(df)} rows")
+            logger.info(f"Processed CSV from blob {blob_name}: {len(df)} rows")
             return df
             
         except Exception as e:
-            logger.error(f"❌ Error processing CSV from blob: {str(e)}")
+            logger.error(f"Error processing CSV from blob: {str(e)}")
             raise
     
     def upload_dataframe_as_csv(self, 
@@ -289,11 +289,11 @@ class AzureBlobIntegration:
             blob_client.upload_blob(csv_string.encode('utf-8'), overwrite=True)
             
             blob_url = blob_client.url
-            logger.info(f"✅ Uploaded DataFrame as CSV to {blob_url}")
+            logger.info(f"Uploaded DataFrame as CSV to {blob_url}")
             return blob_url
             
         except Exception as e:
-            logger.error(f"❌ Error uploading DataFrame as CSV: {str(e)}")
+            logger.error(f"Error uploading DataFrame as CSV: {str(e)}")
             raise
 
 def main():
@@ -303,36 +303,36 @@ def main():
         blob_integration = AzureBlobIntegration()
         
         # Example operations
-        print("🔧 Azure Blob Storage Integration Examples")
+        print("Azure Blob Storage Integration Examples")
         print("=" * 50)
         
         # List existing blobs
-        print("\n1️⃣ Listing existing blobs:")
+        print("\n1. Listing existing blobs:")
         blobs = blob_integration.list_blobs()
         for blob in blobs[:5]:  # Show first 5
-            print(f"  📄 {blob['name']} ({blob['size']} bytes)")
+            print(f"  File: {blob['name']} ({blob['size']} bytes)")
         
         # Upload local CSV file
-        print("\n2️⃣ Uploading local CSV file:")
+        print("\n2. Uploading local CSV file:")
         local_csv = "technology_standard_list.csv"
         if os.path.exists(local_csv):
             blob_url = blob_integration.upload_csv_to_blob(local_csv)
-            print(f"  ✅ Uploaded to: {blob_url}")
+            print(f"  Uploaded to: {blob_url}")
         else:
-            print(f"  ⚠️ Local file {local_csv} not found")
+            print(f"  Warning: Local file {local_csv} not found")
         
         # Download and process CSV
-        print("\n3️⃣ Downloading and processing CSV:")
+        print("\n3. Downloading and processing CSV:")
         blob_name = "technology_standard_list.csv"
         try:
             df = blob_integration.process_csv_from_blob(blob_name)
-            print(f"  ✅ Processed CSV: {len(df)} rows, {len(df.columns)} columns")
-            print(f"  📊 Columns: {', '.join(df.columns[:5])}...")
+            print(f"  Processed CSV: {len(df)} rows, {len(df.columns)} columns")
+            print(f"  Columns: {', '.join(df.columns[:5])}...")
         except Exception as e:
-            print(f"  ❌ Error: {str(e)}")
+            print(f"  Error: {str(e)}")
         
     except Exception as e:
-        print(f"❌ Main execution error: {str(e)}")
+        print(f"Main execution error: {str(e)}")
 
 if __name__ == "__main__":
     main()
