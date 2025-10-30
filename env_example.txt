@@ -7,8 +7,15 @@ OPENAI_API_KEY=your-openai-api-key
 OPENAI_ENDPOINT=https://your-openai-resource.openai.azure.com/
 OPENAI_API_VERSION=2024-02-15-preview
 EMBEDDING_MODEL=text-embedding-3-small
+ANALYSIS_MODEL=gpt-5-mini
 
 # Azure Blob Storage Configuration
 AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=https;AccountName=your-storage-account;AccountKey=your-storage-key;EndpointSuffix=core.windows.net
 BLOB_CONTAINER_NAME=csv-data
+
+# Azure AI Foundry Configuration (for GPT-5 model - used for query analysis and answer generation)
+AZURE_AI_FOUNDRY_ENDPOINT=https://your-foundry-resource.openai.azure.com/
+AZURE_AI_FOUNDRY_KEY=your-foundry-api-key
+AZURE_AI_FOUNDRY_DEPLOYMENT=gpt-5
+AZURE_AI_FOUNDRY_API_VERSION=2024-02-15-preview
 
