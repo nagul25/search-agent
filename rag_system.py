@@ -77,7 +77,9 @@ class RAGSystem:
                 top=top_k,
                 select_fields=["NameofTools", "Manufacturer", "TEBStatus", 
                              "Capabilities", "SubCapability", "Description", 
-                             "MetaTags", "Version"]
+                             "MetaTags", "Version", "StandardsComments", 
+                             "EANotes", "StandardCategory", "EAReferenceID", 
+                             "MetaTagsDescription", "CapabilityManager"]
             )
             
             if "error" in search_results:
@@ -118,12 +120,24 @@ class RAGSystem:
             context_part += f"Capability: {doc.get('Capabilities', 'N/A')}\n"
             context_part += f"Sub-Capability: {doc.get('SubCapability', 'N/A')}\n"
             context_part += f"Version: {doc.get('Version', 'N/A')}\n"
+            context_part += f"Standard Category: {doc.get('StandardCategory', 'N/A')}\n"
+            context_part += f"EA Reference ID: {doc.get('EAReferenceID', 'N/A')}\n"
+            context_part += f"Capability Manager: {doc.get('CapabilityManager', 'N/A')}\n"
             
             if doc.get('Description'):
                 context_part += f"Description: {doc.get('Description')}\n"
             
+            if doc.get('StandardsComments'):
+                context_part += f"Standards Comments: {doc.get('StandardsComments')}\n"
+            
+            if doc.get('EANotes'):
+                context_part += f"EA Notes: {doc.get('EANotes')}\n"
+            
             if doc.get('MetaTags'):
-                context_part += f"Tags: {doc.get('MetaTags')}\n"
+                context_part += f"Meta Tags: {doc.get('MetaTags')}\n"
+            
+            if doc.get('MetaTagsDescription'):
+                context_part += f"Meta Tags Description: {doc.get('MetaTagsDescription')}\n"
             
             if '@search.score' in doc:
                 context_part += f"Relevance Score: {doc.get('@search.score', 'N/A')}\n"
@@ -135,14 +149,58 @@ class RAGSystem:
     def _generate_answer(self, question: str, context: str, documents: List[Dict]) -> str:
         """Generate answer using Azure AI Foundry GPT-5"""
         
-        system_prompt = """You are a technology tools expert assistant. Your role is to answer questions about technology tools based on the context provided to you.
+        system_prompt = """You are an expert technology tools assistant for Experian. Your primary role is to answer questions about software tools and technology standards based solely on the provided context.
 
-Guidelines:
-- Answer based ONLY on the context provided
-- Be accurate and concise
-- If the context doesn't contain enough information to answer the question, say so
-- Provide specific tool names and capabilities when relevant
-- Include TEB approval status and manufacturer information when relevant"""
+KNOWLEDGE BASE INFORMATION:
+The knowledge base contains the "Experian technology standard list", which includes:
+1. Software tools and their capabilities used within Experian organization
+2. Tool categorization by:
+   - Capabilities 
+   - Sub-capabilities
+   - Tool names (NameofTools)
+   - Manufacturers
+   - Versions
+   - Meta tags (additional functionality descriptions)
+3. Technology Evaluation Board (TEB) approval status for each tool
+4. Standard consideration and approval processes managed through the TEB process
+
+AVAILABLE DATA FIELDS:
+Each tool document contains all columns from the CSV: NameofTools, Manufacturer, TEBStatus, Capabilities, SubCapability, Description, MetaTags, Version, StandardsComments, EANotes, StandardCategory, EAReferenceID, MetaTagsDescription, and CapabilityManager. Use all available fields to provide accurate and detailed answers.
+
+SEMANTIC UNDERSTANDING:
+1. ABBREVIATIONS AND SHORTHAND: Recognize and interpret common technical abbreviations and shorthand when matching user questions to context. Examples:
+   - "pub/sub" or "pubsub" = "publish/subscribe" or "publishing and subscribing"
+   - "devops" or "DevOps" = "DevOps" (case variations)
+   - "I&A" or "IAM" = "Identity & Access Management"
+   - "CI/CD" = "Continuous Integration/Continuous Deployment"
+2. SYNONYMS AND VARIATIONS: Understand semantic equivalents and terminology variations:
+   - "authentication" = "auth" = "identity verification"
+   - "messaging" = "event streaming" = "message queue" (when contextually relevant)
+   - "analytics" = "data analytics" = "business intelligence" (where applicable)
+3. COMPREHENSIVE FIELD SEARCH: When matching user terminology to tools, check ALL available fields in the context including:
+   - NameofTools (tool name)
+   - Capabilities 
+   - SubCapability 
+   - Description (detailed tool descriptions - CRITICAL: full terms like "publish/subscribe" often appear here)
+   - MetaTags (additional functionality tags)
+   - Manufacturer
+   - Version
+4. TERMINOLOGY MAPPING: Map user's terminology to knowledge base terminology across ALL fields. If user asks about "pub/sub tools", look for tools where ANY field (especially Description, Capabilities, SubCapability, or MetaTags) contains terms related to:
+   - "publish/subscribe" or "publishing and subscribing" (full term may be in Description)
+   - "messaging"
+   - "event streaming"
+   - "message queue"
+   - "pub/sub" (if explicitly mentioned)
+5. CONTEXT MATCHING: Match user questions to tools in context even if exact terminology differs, as long as the semantic meaning aligns. Example: When user asks "pub/sub tools", match tools where "publish/subscribe" appears in Description, capabilities, or any other field, even if the exact abbreviation "pub/sub" is not present in the context.
+
+ANSWER GENERATION GUIDELINES:
+1. STRICT CONTEXT USAGE: Answer ONLY using information from the provided context. Do not use external knowledge or assumptions.
+2. ACCURACY: Cite specific tool names, manufacturers, versions, and TEB status when available in the context.
+3. COMPLETENESS: Include relevant details from all fields including capabilities, sub-capabilities, descriptions (where full terms like "publish/subscribe" may appear), and meta tags when they help answer the question.
+4. CLARITY: Structure your answer clearly, prioritizing the most relevant information first. When user uses abbreviations like "pub/sub", acknowledge their terminology while providing complete information.
+5. HANDLING INCOMPLETE INFORMATION: If the context lacks sufficient information to fully answer the question, explicitly state what information is missing and provide partial answers based on available context.
+6. RELEVANCE: Focus on tools and information that directly address the user's question, even if they used different terminology (abbreviations, synonyms). Avoid unnecessary details.
+7. TEB STATUS: Always mention TEB approval status when discussing tool adoption or standards, as this is critical for organizational compliance."""
 
         user_prompt = f"""Context (Retrieved Technology Tools):
 

@@ -47,18 +47,23 @@ class QueryAnalyzer:
 
 Your task is to analyze the user's question and extract:
 1. Search keywords for hybrid search (extract key terms for semantic/vector search)
+   - Expand abbreviations to include both abbreviated and full forms (e.g., "pub/sub" → include "pub sub", "publish subscribe", "publish/subscribe")
+   - This ensures matches in Description fields where full terms often appear
 2. OData filter expressions for Azure AI Search
+   - Only include filters for values that are EXPLICITLY mentioned in the question
+   - Do not infer or assume filter values that are not present in the question
+   - If a field value is not mentioned, do not include it in the filters
 3. Intent classification
 
-Available filter fields and values:
-- TEBStatus: 'TEB Approved', 'TEB Not Approved', 'Under Review', 'Deprecated'
-- Manufacturer: 'Google', 'Microsoft', 'Amazon', 'IBM', 'Oracle', etc.
-- Capabilities: 'Identity & Access Mgmt', 'DevOps', 'Analytics', 'Data Management', 'Security', etc.
-- SubCapability: Various sub-categories based on capability
+Available filter fields (extract these values ONLY if present in the question):
+- TEBStatus: Can only be 'TEB Approved' or 'TEB Not Approved'. Only include if the question mentions TEB approval status.
+- Manufacturer: Can be any manufacturer name mentioned in the question (e.g., 'Google', 'Microsoft', 'Amazon', 'IBM', 'Oracle', etc.). Extract the exact manufacturer name ONLY if mentioned in the question.
+- Capabilities: Can be any capability mentioned in the question (e.g., 'Identity & Access Mgmt', 'DevOps', 'Analytics', 'Data Management', 'Security', etc.). Extract the exact capability name ONLY if mentioned in the question.
+- SubCapability: Can be any sub-capability mentioned in the question. Extract the exact sub-capability name ONLY if mentioned in the question.
 
 Filter Operators:
 - eq (equals): TEBStatus eq 'TEB Approved'
-- ne (not equals): TEBStatus ne 'Deprecated'
+- ne (not equals): TEBStatus ne 'TEB Not Approved'
 - or: Manufacturer eq 'Google' or Manufacturer eq 'Microsoft'
 - and: TEBStatus eq 'TEB Approved' and Capabilities eq 'DevOps'
 
@@ -69,14 +74,14 @@ Question: "What TEB approved authentication tools are available?"
 - intent: "Filter by TEB Approved authentication tools"
 
 Question: "Show me Google's pub/sub messaging tools"
-- search_query: "pub sub messaging event streaming"
+- search_query: "pub sub publish subscribe publish/subscribe messaging event streaming"
 - filters: "Manufacturer eq 'Google'"
 - intent: "Google pub/sub messaging tools"
 
-Question: "Which DevOps tools are under review?"
+Question: "Which DevOps tools are not TEB approved?"
 - search_query: "devops ci/cd pipeline automation"
-- filters: "TEBStatus eq 'Under Review' and Capabilities eq 'DevOps'"
-- intent: "DevOps tools under review"
+- filters: "TEBStatus eq 'TEB Not Approved' and Capabilities eq 'DevOps'"
+- intent: "DevOps tools not TEB approved"
 
 Question: "What security tools can I use?"
 - search_query: "security compliance governance"
