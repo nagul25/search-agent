@@ -295,3 +295,17 @@ For issues and questions:
 
 This project is provided as-is for demonstration purposes.
 
+
+
+
+
+### Run the fastapi application
+
+- Keep the updated .env file
+- Do pip install
+- python run.py to start the api application
+- You can access the swagger using http://localhost:8000/docs url
+- Call the ```http://localhost:8000/api/poc/query``` endpoint which will trigger the AI code.
+- Arguments for this endpoint 
+-   => "query" - string, required 
+-   => "files" - optional
