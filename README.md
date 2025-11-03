@@ -2,6 +2,10 @@
 
 This project demonstrates how to index CSV data into Azure AI Search with vector embeddings for hybrid retrieval search capabilities, including filtering and semantic search. It also includes a RAG (Retrieval-Augmented Generation) question-answering system that allows users to interact with the indexed data through natural language queries.
 
+- chat interface
+- rag system
+- data ingestion
+
 ## Features
 
 - **Vector Search**: Semantic similarity search using Azure OpenAI embeddings

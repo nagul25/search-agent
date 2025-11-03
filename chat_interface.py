@@ -4,7 +4,7 @@ Terminal-based question answering interface
 """
 
 import sys
-from rag_system import RAGSystem
+from app.services.rag_system import RAGSystem
 
 class ChatInterface:
     def __init__(self):

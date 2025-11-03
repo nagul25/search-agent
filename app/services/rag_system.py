@@ -3,6 +3,7 @@ RAG System Orchestrator
 Integrates query analysis, document retrieval, and answer generation
 """
 
+import logging
 import os
 from typing import Dict, Any, List, Optional
 from openai import AzureOpenAI
@@ -38,6 +39,8 @@ class RAGSystem:
             raise
     
     def answer_question(self, question: str, top_k: int = 5) -> Dict[str, Any]:
+        logging.info("Initiated:: Answering question using RAG System")
+
         """
         Answer a user question using RAG approach
         
