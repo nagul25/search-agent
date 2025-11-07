@@ -3,6 +3,7 @@ RAG System Orchestrator
 Integrates query analysis, document retrieval, and answer generation
 """
 
+import logging
 import os
 from typing import Dict, Any, List, Optional
 from openai import AzureOpenAI
@@ -37,13 +38,16 @@ class RAGSystem:
             print(f"Error initializing Azure AI Foundry client: {str(e)}")
             raise
     
-    def answer_question(self, question: str, top_k: int = 5) -> Dict[str, Any]:
+    def answer_question(self, question: str, top_k: int = 100, retrieve_all: bool = True) -> Dict[str, Any]:
+        logging.info("Initiated:: Answering question using RAG System")
+
         """
         Answer a user question using RAG approach
         
         Args:
             question: User's natural language question
-            top_k: Number of documents to retrieve
+            top_k: Maximum number of documents to retrieve (default: 100)
+            retrieve_all: If True, retrieves all relevant documents up to top_k limit
             
         Returns:
             Dictionary with answer, sources, and metadata
@@ -86,8 +90,12 @@ class RAGSystem:
                 result["answer"] = f"Error retrieving documents: {search_results['error']}"
                 return result
             
-            result["metadata"]["documents_retrieved"] = search_results.get("total_count", 0)
+            total_count = search_results.get("total_count", 0)
             documents = search_results.get("results", [])
+            
+            result["metadata"]["documents_retrieved"] = total_count
+            
+            print(f"Found {total_count} relevant documents, retrieved {len(documents)} documents")
             
             if not documents:
                 result["answer"] = "No relevant documents found in the knowledge base to answer your question."
@@ -97,10 +105,10 @@ class RAGSystem:
             context = self._format_documents_as_context(documents)
             
             # Step 4: Generate answer using Azure AI Foundry GPT-5
-            print(f"Generating answer...")
+            print(f"Generating answer using {len(documents)} documents as context...")
             answer = self._generate_answer(question, context, documents)
             result["answer"] = answer
-            result["sources"] = documents[:top_k]
+            result["sources"] = documents
             
             return result
             

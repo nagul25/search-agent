@@ -2,6 +2,10 @@
 
 This project demonstrates how to index CSV data into Azure AI Search with vector embeddings for hybrid retrieval search capabilities, including filtering and semantic search. It also includes a RAG (Retrieval-Augmented Generation) question-answering system that allows users to interact with the indexed data through natural language queries.
 
+- chat interface
+- rag system
+- data ingestion
+
 ## Features
 
 - **Vector Search**: Semantic similarity search using Azure OpenAI embeddings
@@ -291,3 +295,17 @@ For issues and questions:
 
 This project is provided as-is for demonstration purposes.
 
+
+
+
+
+### Run the fastapi application
+
+- Keep the updated .env file
+- Do pip install
+- python run.py to start the api application
+- You can access the swagger using http://localhost:8000/docs url
+- Call the ```http://localhost:8000/api/poc/query``` endpoint which will trigger the AI code.
+- Arguments for this endpoint 
+-   => "query" - string, required 
+-   => "files" - optional
