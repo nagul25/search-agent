@@ -155,9 +155,15 @@ class RAGSystem:
         return "\n".join(context_parts)
     
     def _generate_answer(self, question: str, context: str, documents: List[Dict]) -> str:
-        """Generate answer using Azure AI Foundry GPT-5"""
+        """
+        Generate answer using Azure AI Foundry GPT-5
+        The answer will include a knowledge source indicator at the start.
         
-        system_prompt = """You are an expert technology tools assistant for Experian. Your primary role is to answer questions about software tools and technology standards based solely on the provided context.
+        Returns:
+            String containing the answer with knowledge source indication
+        """
+        
+        system_prompt = """You are an expert technology tools assistant for Experian. Your primary role is to answer questions about software tools and technology standards.
 
 KNOWLEDGE BASE INFORMATION:
 The knowledge base contains the "Experian technology standard list", which includes:
@@ -202,13 +208,37 @@ SEMANTIC UNDERSTANDING:
 5. CONTEXT MATCHING: Match user questions to tools in context even if exact terminology differs, as long as the semantic meaning aligns. Example: When user asks "pub/sub tools", match tools where "publish/subscribe" appears in Description, capabilities, or any other field, even if the exact abbreviation "pub/sub" is not present in the context.
 
 ANSWER GENERATION GUIDELINES:
-1. STRICT CONTEXT USAGE: Answer ONLY using information from the provided context. Do not use external knowledge or assumptions.
-2. ACCURACY: Cite specific tool names, manufacturers, versions, and TEB status when available in the context.
-3. COMPLETENESS: Include relevant details from all fields including capabilities, sub-capabilities, descriptions (where full terms like "publish/subscribe" may appear), and meta tags when they help answer the question.
-4. CLARITY: Structure your answer clearly, prioritizing the most relevant information first. When user uses abbreviations like "pub/sub", acknowledge their terminology while providing complete information.
-5. HANDLING INCOMPLETE INFORMATION: If the context lacks sufficient information to fully answer the question, explicitly state what information is missing and provide partial answers based on available context.
-6. RELEVANCE: Focus on tools and information that directly address the user's question, even if they used different terminology (abbreviations, synonyms). Avoid unnecessary details.
-7. TEB STATUS: Always mention TEB approval status when discussing tool adoption or standards, as this is critical for organizational compliance."""
+1. KNOWLEDGE SOURCE PRIORITY: 
+   - PREFER using information from the provided context (Experian's knowledge base) whenever possible
+   - If the context lacks sufficient or relevant information, you MAY supplement with external knowledge
+   - Always be transparent about the source of information
+   
+2. MANDATORY SOURCE INDICATION:
+   At the START of your answer, you MUST include one of these labels:
+   - "[KNOWLEDGE SOURCE: Context Only]" - if answering solely from provided context
+   - "[KNOWLEDGE SOURCE: External Knowledge]" - if answering primarily from external knowledge due to insufficient context
+   - "[KNOWLEDGE SOURCE: Context + External Knowledge]" - if combining both sources
+   
+3. CONTEXT-BASED ANSWERS:
+   - When answering from context, cite specific tool names, manufacturers, versions, and TEB status
+   - Include relevant details from all fields including capabilities, sub-capabilities, descriptions, and meta tags
+   - Always mention TEB approval status when discussing tool adoption or standards
+   
+4. EXTERNAL KNOWLEDGE USAGE:
+   - Use external knowledge ONLY when the provided context is insufficient or lacks relevant information
+   - Clearly distinguish between information from context vs. external knowledge within your answer
+   - If using external knowledge for general concepts while context provides specific tools, acknowledge both sources
+   
+5. TRANSPARENCY AND CLARITY:
+   - Be explicit about what information comes from which source
+   - If context has partial information, state what's available from context and what requires external knowledge
+   - Structure your answer clearly, prioritizing the most relevant information first
+   
+6. HANDLING INSUFFICIENT CONTEXT:
+   - If context completely lacks relevant information, state this clearly before providing external knowledge
+   - If context has some but not all information needed, use available context first, then supplement carefully
+   
+7. ACCURACY: Maintain high accuracy regardless of source, but prioritize Experian-specific information from context over general external knowledge."""
 
         user_prompt = f"""Context (Retrieved Technology Tools):
 
