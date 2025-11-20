@@ -75,7 +75,7 @@ class HybridSearchClient:
     def keyword_search(self, 
                       query: str, 
                       filters: Optional[str] = None,
-                      top: int = 100,
+                      top: int = 50,
                       select_fields: Optional[List[str]] = None) -> Dict[str, Any]:
         """
         Perform keyword search with optional filtering
@@ -83,7 +83,7 @@ class HybridSearchClient:
         Args:
             query: Search query text
             filters: OData filter expression (e.g., "teb_status eq 'TEB Approved'")
-            top: Number of results to return (default: 100 to retrieve all relevant documents)
+            top: Number of results to return (default: 50)
             select_fields: Fields to return in results
         """
         try:
@@ -116,7 +116,7 @@ class HybridSearchClient:
     def vector_search(self, 
                      query: str, 
                      filters: Optional[str] = None,
-                     top: int = 100,
+                     top: int = 50,
                      select_fields: Optional[List[str]] = None) -> Dict[str, Any]:
         """
         Perform vector search with optional filtering
@@ -124,7 +124,7 @@ class HybridSearchClient:
         Args:
             query: Search query text
             filters: OData filter expression
-            top: Number of results to return (default: 100 to retrieve all relevant documents)
+            top: Number of results to return (default: 50)
             select_fields: Fields to return in results
         """
         try:
@@ -169,7 +169,7 @@ class HybridSearchClient:
     def hybrid_search(self, 
                      query: str, 
                      filters: Optional[str] = None,
-                     top: int = 100,
+                     top: int = 50,
                      select_fields: Optional[List[str]] = None,
                      semantic_configuration_name: str = "default-semantic-config") -> Dict[str, Any]:
         """
@@ -178,7 +178,7 @@ class HybridSearchClient:
         Args:
             query: Search query text
             filters: OData filter expression
-            top: Number of results to return (default: 100 to retrieve all relevant documents)
+            top: Number of results to return (default: 50)
             select_fields: Fields to return in results
             semantic_configuration_name: Semantic search configuration name
         """
@@ -228,14 +228,14 @@ class HybridSearchClient:
     
     def filter_search(self, 
                      filters: str,
-                     top: int = 100,
+                     top: int = 50,
                      select_fields: Optional[List[str]] = None) -> Dict[str, Any]:
         """
         Perform filtered search without text query
         
         Args:
             filters: OData filter expression
-            top: Number of results to return (default: 100 to retrieve all relevant documents)
+            top: Number of results to return (default: 50)
             select_fields: Fields to return in results
         """
         try:
