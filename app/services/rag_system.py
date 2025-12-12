@@ -240,6 +240,14 @@ ANSWER GENERATION GUIDELINES:
    
 7. ACCURACY: Maintain high accuracy regardless of source, but prioritize Experian-specific information from context over general external knowledge."""
 
+        user_prompt = f"""Context (Retrieved Technology Tools):
+
+{context}
+
+Question: {question}
+
+Provide a comprehensive answer based on the context provided above."""
+
         try:
             messages = [
                 {"role": "system", "content": system_prompt},
