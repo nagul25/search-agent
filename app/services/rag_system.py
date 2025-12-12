@@ -181,9 +181,6 @@ The knowledge base contains the "Experian technology standard list", which inclu
 AVAILABLE DATA FIELDS:
 Each tool document contains all columns from the CSV: NameofTools, Manufacturer, TEBStatus, Capabilities, SubCapability, Description, MetaTags, Version, StandardsComments, EANotes, StandardCategory, EAReferenceID, MetaTagsDescription, and CapabilityManager. Use all available fields to provide accurate and detailed answers.
 
-CRITICAL REQUIREMENT - COMPLETE TOOL LISTING:
-When answering questions about tools, you MUST list ALL relevant tools from the provided context with their complete information. Do not summarize or provide examples only. If the user asks for security testing tools and there are 36 relevant tools in the context, you must include ALL 36 tools with ALL their fields in your answer. This is a mandatory requirement for comprehensive and accurate responses.
-
 SEMANTIC UNDERSTANDING:
 1. ABBREVIATIONS AND SHORTHAND: Recognize and interpret common technical abbreviations and shorthand when matching user questions to context. Examples:
    - "pub/sub" or "pubsub" = "publish/subscribe" or "publishing and subscribing"
@@ -222,33 +219,10 @@ ANSWER GENERATION GUIDELINES:
    - "[KNOWLEDGE SOURCE: External Knowledge]" - if answering primarily from external knowledge due to insufficient context
    - "[KNOWLEDGE SOURCE: Context + External Knowledge]" - if combining both sources
    
-3. CONTEXT-BASED ANSWERS - COMPLETE TOOL LISTING REQUIRED:
-   - When answering from context, you MUST list ALL relevant tools from the provided context, not just examples or summaries
-   - For EACH tool, include ALL available fields: NameofTools, Manufacturer, TEBStatus, Capabilities, SubCapability, Version, StandardCategory, EAReferenceID, CapabilityManager, Description, MetaTags, MetaTagsDescription, StandardsComments, and EANotes
-   - Structure your answer with: 
-     a) A brief summary stating the total number of relevant tools found
-     b) A complete list of ALL tools with ALL their fields
-     c) Any additional insights or patterns (optional)
-   - Example format:
-     "Found 36 security testing tools in the knowledge base. Here are all the tools:
-     
-     1. [ToolName] - [Manufacturer]
-        - TEB Status: [Status]
-        - Capability: [Capability]
-        - Sub-Capability: [SubCapability]
-        - Version: [Version]
-        - Standard Category: [Category]
-        - EA Reference ID: [ID]
-        - Capability Manager: [Manager]
-        - Description: [Description]
-        - Meta Tags: [Tags]
-        - Meta Tags Description: [TagsDesc]
-        - Standards Comments: [Comments]
-        - EA Notes: [Notes]
-     
-     2. [Next tool with all fields]
-     ...
-     36. [Last tool with all fields]"
+3. CONTEXT-BASED ANSWERS:
+   - When answering from context, cite specific tool names, manufacturers, versions, and TEB status
+   - Include relevant details from all fields including capabilities, sub-capabilities, descriptions, and meta tags
+   - Always mention TEB approval status when discussing tool adoption or standards
    
 4. EXTERNAL KNOWLEDGE USAGE:
    - Use external knowledge ONLY when the provided context is insufficient or lacks relevant information
@@ -258,24 +232,13 @@ ANSWER GENERATION GUIDELINES:
 5. TRANSPARENCY AND CLARITY:
    - Be explicit about what information comes from which source
    - If context has partial information, state what's available from context and what requires external knowledge
-   - Always state the total count of tools found at the beginning of your answer
+   - Structure your answer clearly, prioritizing the most relevant information first
    
 6. HANDLING INSUFFICIENT CONTEXT:
    - If context completely lacks relevant information, state this clearly before providing external knowledge
    - If context has some but not all information needed, use available context first, then supplement carefully
    
-7. ACCURACY AND COMPLETENESS: 
-   - Maintain high accuracy regardless of source, but prioritize Experian-specific information from context over general external knowledge
-   - NEVER omit tools from your answer - if 36 tools match the query, list all 36 tools with complete information
-   - Do not use phrases like "here are some examples" or "including but not limited to" - list ALL tools comprehensively"""
-
-        user_prompt = f"""Context (Retrieved Technology Tools):
-
-{context}
-
-Question: {question}
-
-IMPORTANT: Provide a comprehensive answer that includes ALL tools from the context above that are relevant to the question. You must list every single relevant tool with ALL available fields (NameofTools, Manufacturer, TEBStatus, Capabilities, SubCapability, Version, StandardCategory, EAReferenceID, CapabilityManager, Description, MetaTags, MetaTagsDescription, StandardsComments, EANotes). Do not omit any tools or provide only examples."""
+7. ACCURACY: Maintain high accuracy regardless of source, but prioritize Experian-specific information from context over general external knowledge."""
 
         try:
             messages = [
