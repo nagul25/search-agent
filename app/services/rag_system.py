@@ -3,6 +3,7 @@ RAG System Orchestrator
 Integrates query analysis, document retrieval, and answer generation
 """
 
+import json
 import logging
 import os
 from typing import Dict, Any, List, Optional
@@ -56,6 +57,7 @@ class RAGSystem:
         result = {
             "question": question,
             "answer": "",
+            "tools": [],
             "sources": [],
             "metadata": {
                 "search_query": "",
@@ -106,8 +108,9 @@ class RAGSystem:
             
             # Step 4: Generate answer using Azure AI Foundry GPT-5
             print(f"Generating answer using {len(documents)} documents as context...")
-            answer = self._generate_answer(question, context, documents)
-            result["answer"] = answer
+            generated_response = self._generate_answer(question, context, documents)
+            result["answer"] = generated_response.get("summary", "")
+            result["tools"] = generated_response.get("tools", [])
             result["sources"] = documents
             
             return result
@@ -154,13 +157,15 @@ class RAGSystem:
         
         return "\n".join(context_parts)
     
-    def _generate_answer(self, question: str, context: str, documents: List[Dict]) -> str:
+    def _generate_answer(self, question: str, context: str, documents: List[Dict]) -> Dict[str, Any]:
         """
         Generate answer using Azure AI Foundry GPT-5
-        The answer will include a knowledge source indicator at the start.
+        Returns structured JSON with summary and tools array for frontend display.
         
         Returns:
-            String containing the answer with knowledge source indication
+            Dictionary containing:
+                - summary: Text summary with knowledge source indication
+                - tools: Array of tool objects with structured attributes
         """
         
         system_prompt = """You are an expert technology tools assistant for Experian. Your primary role is to answer questions about software tools and technology standards.
@@ -207,38 +212,134 @@ SEMANTIC UNDERSTANDING:
    - "pub/sub" (if explicitly mentioned)
 5. CONTEXT MATCHING: Match user questions to tools in context even if exact terminology differs, as long as the semantic meaning aligns. Example: When user asks "pub/sub tools", match tools where "publish/subscribe" appears in Description, capabilities, or any other field, even if the exact abbreviation "pub/sub" is not present in the context.
 
-ANSWER GENERATION GUIDELINES:
-1. KNOWLEDGE SOURCE PRIORITY: 
-   - PREFER using information from the provided context (Experian's knowledge base) whenever possible
-   - If the context lacks sufficient or relevant information, you MAY supplement with external knowledge
-   - Always be transparent about the source of information
-   
-2. MANDATORY SOURCE INDICATION:
-   At the START of your answer, you MUST include one of these labels:
-   - "[KNOWLEDGE SOURCE: Context Only]" - if answering solely from provided context
-   - "[KNOWLEDGE SOURCE: External Knowledge]" - if answering primarily from external knowledge due to insufficient context
-   - "[KNOWLEDGE SOURCE: Context + External Knowledge]" - if combining both sources
-   
-3. CONTEXT-BASED ANSWERS:
-   - When answering from context, cite specific tool names, manufacturers, versions, and TEB status
-   - Include relevant details from all fields including capabilities, sub-capabilities, descriptions, and meta tags
-   - Always mention TEB approval status when discussing tool adoption or standards
-   
-4. EXTERNAL KNOWLEDGE USAGE:
-   - Use external knowledge ONLY when the provided context is insufficient or lacks relevant information
-   - Clearly distinguish between information from context vs. external knowledge within your answer
-   - If using external knowledge for general concepts while context provides specific tools, acknowledge both sources
-   
-5. TRANSPARENCY AND CLARITY:
-   - Be explicit about what information comes from which source
-   - If context has partial information, state what's available from context and what requires external knowledge
-   - Structure your answer clearly, prioritizing the most relevant information first
-   
-6. HANDLING INSUFFICIENT CONTEXT:
-   - If context completely lacks relevant information, state this clearly before providing external knowledge
-   - If context has some but not all information needed, use available context first, then supplement carefully
-   
-7. ACCURACY: Maintain high accuracy regardless of source, but prioritize Experian-specific information from context over general external knowledge."""
+HANDLING TOOLS NOT IN CONTEXT (IMPORTANT):
+When the user asks about a specific tool that is NOT present in the provided context:
+
+1. PRIORITY ORDER:
+   - FIRST: Provide information about the tool the user specifically asked about (use external knowledge)
+   - SECOND: Include the closest related/similar tools FROM THE CONTEXT as Experian-approved alternatives
+
+2. FINDING RELATED TOOLS:
+   When the requested tool is not in context, identify related tools by matching:
+   - Same category/capability (e.g., if user asks about MongoDB, include document databases from context)
+   - Similar functionality (e.g., if user asks about Jenkins, include CI/CD tools from context)
+   - Same use case (e.g., if user asks about Slack, include communication/collaboration tools from context)
+   - Same technology domain (e.g., if user asks about Redis, include caching or in-memory data tools from context)
+
+3. RESPONSE STRUCTURE FOR MISSING TOOLS:
+   - Clearly answer the user's question about the requested tool first
+   - Then introduce related alternatives with: "While [requested tool] is not in the Experian standards list, the following related tools are available:"
+   - Explain why these alternatives are relevant (similar capability, use case, etc.)
+
+4. TOOLS ARRAY BEHAVIOR:
+   - If the requested tool IS in context: include it in the tools array
+   - If the requested tool is NOT in context: include the closest related tools from context in the tools array
+   - Mark external knowledge tools clearly in the summary, but only include context-based tools in the tools array
+
+5. EXAMPLES:
+   - User asks about "CouchDB" (not in context) -> Provide CouchDB info, then include document DBs or NoSQL tools from context
+   - User asks about "Terraform" (not in context) -> Provide Terraform info, then include IaC or DevOps tools from context
+   - User asks about "Datadog" (not in context) -> Provide Datadog info, then include monitoring/observability tools from context
+
+RESPONSE FORMAT:
+You MUST respond with a valid JSON object containing exactly two fields:
+1. "summary": A well-formatted text summary answering the user's question (see SUMMARY FORMATTING below)
+2. "tools": An array of tool objects that are relevant to the question
+
+SUMMARY FORMATTING (CRITICAL FOR READABILITY):
+The summary field MUST be formatted with proper structure for easy reading:
+
+1. START with the knowledge source label on its own line
+2. Use DOUBLE LINE BREAKS (\\n\\n) between paragraphs and sections
+3. Use MARKDOWN formatting for structure:
+   - Use **bold** for emphasis and section headers
+   - Use bullet points (- item) for lists
+   - Use numbered lists (1. item) for sequential information
+4. Organize content into clear sections when appropriate:
+   - Overview/Introduction
+   - Key Points or Comparison (if comparing tools)
+   - Recommendations (if applicable)
+   - Notes or Caveats (if applicable)
+5. Keep paragraphs SHORT (2-4 sentences max)
+6. Use line breaks to separate distinct ideas
+
+KNOWLEDGE SOURCE INDICATION (first line of summary):
+- "[KNOWLEDGE SOURCE: Context Only]" - if answering solely from provided context
+- "[KNOWLEDGE SOURCE: External Knowledge]" - if answering primarily from external knowledge
+- "[KNOWLEDGE SOURCE: Context + External Knowledge]" - if combining both sources
+
+TOOL OBJECT STRUCTURE:
+Each tool in the "tools" array MUST have this exact structure:
+{
+    "name": "Tool name from NameofTools field",
+    "manufacturer": "Manufacturer name",
+    "version": "Version string or null if not available",
+    "tebStatus": "TEB approval status",
+    "capability": "Primary capability",
+    "subCapability": "Sub-capability or null if not available",
+    "description": "Tool description or null if not available",
+    "standardCategory": "Standard category or null if not available",
+    "eaReferenceId": "EA Reference ID or null if not available",
+    "capabilityManager": "Capability manager or null if not available",
+    "metaTags": "Meta tags or null if not available",
+    "standardsComments": "Standards comments or null if not available",
+    "eaNotes": "EA notes or null if not available"
+}
+
+IMPORTANT RULES:
+1. Only include tools that are directly relevant to answering the user's question
+2. Do NOT include all tools from context - filter to only the most relevant ones
+3. Use null for any field that is not available or marked as "N/A" in the context
+4. Ensure the JSON is valid and properly formatted
+5. Do NOT include any text outside the JSON object
+6. Prioritize answering the user's specific question FIRST, then provide Experian alternatives
+7. NEVER write the summary as a single long paragraph - always use proper formatting
+8. When requested tool is NOT in context, include closest related tools from context as alternatives
+9. The tools array should ONLY contain tools from context (not external knowledge tools)
+
+EXAMPLE 1 - Tool found in context:
+{
+    "summary": "[KNOWLEDGE SOURCE: Context Only]\\n\\n**Overview**\\n\\nBased on the Experian technology standards, there are 2 tools available for messaging capabilities.\\n\\n**Available Tools**\\n\\n- **Apache Kafka** - A distributed event streaming platform (TEB Status: Approved)\\n- **RabbitMQ** - A message broker for async communication (TEB Status: Under Review)\\n\\n**Recommendation**\\n\\nFor production use, Apache Kafka is recommended as it has full TEB approval.",
+    "tools": [
+        {
+            "name": "Apache Kafka",
+            "manufacturer": "Apache Software Foundation",
+            "version": "3.0",
+            "tebStatus": "Approved",
+            "capability": "Data Integration",
+            "subCapability": "Event Streaming",
+            "description": "Distributed event streaming platform",
+            "standardCategory": "Standard",
+            "eaReferenceId": "EA-001",
+            "capabilityManager": "John Doe",
+            "metaTags": "messaging, streaming",
+            "standardsComments": null,
+            "eaNotes": null
+        }
+    ]
+}
+
+EXAMPLE 2 - Tool NOT in context (include related alternatives):
+{
+    "summary": "[KNOWLEDGE SOURCE: Context + External Knowledge]\\n\\n**About MongoDB**\\n\\nMongoDB is a popular open-source NoSQL document database developed by MongoDB Inc. It stores data in flexible, JSON-like documents and is widely used for modern web applications.\\n\\n**Key Features**\\n\\n- Document-oriented storage with dynamic schemas\\n- Horizontal scaling with sharding\\n- Rich query language and indexing\\n\\n**Experian Alternatives**\\n\\nWhile MongoDB is not currently in the Experian technology standards list, the following related database tools are approved:\\n\\n- **Oracle Database** - Enterprise relational database (TEB Status: Approved)\\n- **PostgreSQL** - Open-source relational database (TEB Status: Approved)\\n\\n**Note**\\n\\nBefore using MongoDB, please consult with the TEB for approval or consider the approved alternatives listed above.",
+    "tools": [
+        {
+            "name": "Oracle Database",
+            "manufacturer": "Oracle Corporation",
+            "version": "19c",
+            "tebStatus": "Approved",
+            "capability": "Data Management",
+            "subCapability": "Relational Database",
+            "description": "Enterprise-grade relational database management system",
+            "standardCategory": "Standard",
+            "eaReferenceId": "EA-DB-001",
+            "capabilityManager": "Jane Smith",
+            "metaTags": "database, sql, enterprise",
+            "standardsComments": null,
+            "eaNotes": null
+        }
+    ]
+}"""
 
         user_prompt = f"""Context (Retrieved Technology Tools):
 
@@ -246,7 +347,11 @@ ANSWER GENERATION GUIDELINES:
 
 Question: {question}
 
-Provide a comprehensive answer based on the context provided above."""
+Respond with a JSON object containing:
+1. A well-formatted "summary" with proper line breaks, sections, and markdown formatting for readability
+2. A "tools" array with relevant tool objects
+
+Remember: Format the summary with clear structure - use double line breaks between sections, bullet points for lists, and bold for headers. Never write a wall of text."""
 
         try:
             messages = [
@@ -254,15 +359,33 @@ Provide a comprehensive answer based on the context provided above."""
                 {"role": "user", "content": user_prompt}
             ]
             
-            # Some models only support default temperature (1)
-            # Remove temperature parameter for gpt-5 compatibility
+            # Request JSON response format
             response = self.foundry_client.chat.completions.create(
                 model=self.foundry_deployment,
-                messages=messages
+                messages=messages,
+                response_format={"type": "json_object"}
             )
             
-            return response.choices[0].message.content.strip()
+            response_text = response.choices[0].message.content.strip()
+            
+            # Parse the JSON response
+            try:
+                parsed_response = json.loads(response_text)
+                return {
+                    "summary": parsed_response.get("summary", ""),
+                    "tools": parsed_response.get("tools", [])
+                }
+            except json.JSONDecodeError as parse_error:
+                logging.warning(f"Failed to parse JSON response: {parse_error}")
+                # Fallback: return the raw text as summary with empty tools
+                return {
+                    "summary": response_text,
+                    "tools": []
+                }
             
         except Exception as e:
-            return f"Error generating answer: {str(e)}"
+            return {
+                "summary": f"Error generating answer: {str(e)}",
+                "tools": []
+            }
 
