@@ -1,0 +1,1382 @@
+{
+  "data": {
+    "message": "Processed query: list pub/sub",
+    "upload_info": null,
+    "rag_response": {
+      "question": "list pub/sub",
+      "answer": "[KNOWLEDGE SOURCE: Context Only]\n\n**Overview**\n\n- The Experian technology catalog contains several tools listed with the **Pub/Sub** sub-capability.  These are shown below with their TEB status and short notes.\n\n\n**Available Pub/Sub tools**\n\n- **Vertex AI** (TEB Status: TEB Approved) — AI/ML platform entry with Pub/Sub sub-capability and enterprise deployment guidance.\n- **Istio** (TEB Status: TEB Approved) — Service-mesh/monitoring tool listed under Pub/Sub for integration and governance patterns.\n- **Cohere Embed** (TEB Status: TEB Approved) — Analytics/embedding tool with Pub/Sub sub-capability (note: deprecated for new deployments per standards comments).\n- **Dataflow** (TEB Status: Deprecated) — Platform tooling listed under Pub/Sub but marked Deprecated; avoid new deployments.\n\n\n**Recommendation**\n\n- For production Pub/Sub needs prefer tools with TEB Approved status (Vertex AI, Istio, Cohere Embed) and avoid Deprecated entries (Dataflow) unless maintaining legacy systems.\n- Verify specific integration, networking and identity requirements (private endpoints, managed identities) in each tool’s EA notes before implementation.\n\n\n**Notes**\n\n- The list above is drawn directly from the Experian context dataset.  Confirm final selection with the TEB and the capability manager for each tool before proceeding.",
+      "tools": [
+        {
+          "name": "Vertex AI",
+          "manufacturer": "Snowflake",
+          "version": "3.5.1",
+          "tebStatus": "TEB Approved",
+          "capability": "AI/ML",
+          "subCapability": "Pub/Sub",
+          "description": "Vertex AI is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "standardCategory": "Reference Standard",
+          "eaReferenceId": "EA2258313",
+          "capabilityManager": "Drew Martinez",
+          "metaTags": "Vector Search, Microservices, DevOps, AI Experience Platform",
+          "standardsComments": "Vendor support SLA reviewed by procurement.",
+          "eaNotes": "Vendor support SLA reviewed by procurement."
+        },
+        {
+          "name": "Istio",
+          "manufacturer": "Adobe",
+          "version": "1.3.5",
+          "tebStatus": "TEB Approved",
+          "capability": "Monitoring",
+          "subCapability": "Pub/Sub",
+          "description": "Istio is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "standardCategory": "Provisional Standard",
+          "eaReferenceId": "EA9275571",
+          "capabilityManager": "Avery Williams",
+          "metaTags": "Serverless, LLM Orchestration, Cost Management, RAG",
+          "standardsComments": "Requires private endpoint and managed identity configuration.",
+          "eaNotes": "Enable logging and tag resources for cost allocation."
+        },
+        {
+          "name": "Cohere Embed",
+          "manufacturer": "IBM",
+          "version": "1.5.9",
+          "tebStatus": "TEB Approved",
+          "capability": "Analytics",
+          "subCapability": "Pub/Sub",
+          "description": "Cohere Embed is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "standardCategory": "Reference Standard",
+          "eaReferenceId": "EA9985698",
+          "capabilityManager": "Kendall Jackson",
+          "metaTags": "Automation, Serverless, Backup, Observability, Agent Assist",
+          "standardsComments": "Deprecated for new deployments; maintain only.",
+          "eaNotes": "Provisional until further risk assessment is complete."
+        },
+        {
+          "name": "Dataflow",
+          "manufacturer": "Snowflake",
+          "version": "2.2.1",
+          "tebStatus": "Deprecated",
+          "capability": "Platforms",
+          "subCapability": "Pub/Sub",
+          "description": "Dataflow is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "standardCategory": "Product Standard",
+          "eaReferenceId": "EA0305486",
+          "capabilityManager": "Drew Harris",
+          "metaTags": "Semantic Ranker, Contact Center, Cache, Disaster Recovery, Data Engineering, BM25",
+          "standardsComments": "Hybrid retrieval and strict filtering supported.",
+          "eaNotes": "Approved as a standard for enterprise use."
+        }
+      ],
+      "sources": [
+        {
+          "NameofTools": "Vertex AI",
+          "StandardsComments": "Vendor support SLA reviewed by procurement.",
+          "MetaTagsDescription": "Vector Search: scope or capability related to vector search. Microservices: scope or capability related to microservices. DevOps: scope or capability related to devops. AI Experience Platform: scope or capability related to ai experience platform.",
+          "Manufacturer": "Snowflake",
+          "SubCapability": "Pub/Sub",
+          "EANotes": "Vendor support SLA reviewed by procurement.",
+          "Capabilities": "AI/ML",
+          "TEBStatus": "TEB Approved",
+          "StandardCategory": "Reference Standard",
+          "MetaTags": "Vector Search, Microservices, DevOps, AI Experience Platform",
+          "CapabilityManager": "Drew Martinez",
+          "Version": "3.5.1",
+          "EAReferenceID": "EA2258313",
+          "Description": "Vertex AI is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.026584506034851074,
+          "@search.reranker_score": 1.8915324211120605,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Vertex AI is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance includes backup... Tool: Vertex AI                 Capability: AI/ML                 Sub-capability: Pub/Sub                 Manufacturer: Snowflake                 TEB Status: TEB Approved                 Description: Vertex AI is used to.",
+              "highlights": "Vertex AI is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance includes backup... Tool: Vertex AI                 Capability:<em> AI/ML                 Sub-capability: Pub/Sub </em>                Manufacturer: Snowflake                 TEB Status: TEB Approved                 Description: Vertex AI is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Istio",
+          "StandardsComments": "Requires private endpoint and managed identity configuration.",
+          "MetaTagsDescription": "Serverless: scope or capability related to serverless. LLM Orchestration: scope or capability related to llm orchestration. Cost Management: scope or capability related to cost management. RAG: scope or capability related to rag.",
+          "Manufacturer": "Adobe",
+          "SubCapability": "Pub/Sub",
+          "EANotes": "Enable logging and tag resources for cost allocation.",
+          "Capabilities": "Monitoring",
+          "TEBStatus": "TEB Approved",
+          "StandardCategory": "Provisional Standard",
+          "MetaTags": "Serverless, LLM Orchestration, Cost Management, RAG",
+          "CapabilityManager": "Avery Williams",
+          "Version": "1.3.5",
+          "EAReferenceID": "EA9275571",
+          "Description": "Istio is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.03102453239262104,
+          "@search.reranker_score": 1.8474010229110718,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Istio is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance includes backup, monitorin... Tool: Istio                 Capability: Monitoring                 Sub-capability: Pub/Sub                 Manufacturer: Adobe                 TEB Status: TEB Approved                 Description: Istio is used to.",
+              "highlights": "Istio is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance includes backup, monitorin... Tool: Istio                 Capability: Monitoring<em>                 Sub-capability: Pub/Sub </em>                Manufacturer: Adobe                 TEB Status: TEB Approved                 Description: Istio is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Cohere Embed",
+          "StandardsComments": "Deprecated for new deployments; maintain only.",
+          "MetaTagsDescription": "Automation: scope or capability related to automation. Serverless: scope or capability related to serverless. Backup: scope or capability related to backup. Observability: scope or capability related to observability. Agent Assist: scope or capability related to agent assist.",
+          "Manufacturer": "IBM",
+          "SubCapability": "Pub/Sub",
+          "EANotes": "Provisional until further risk assessment is complete.",
+          "Capabilities": "Analytics",
+          "TEBStatus": "TEB Approved",
+          "StandardCategory": "Reference Standard",
+          "MetaTags": "Automation, Serverless, Backup, Observability, Agent Assist",
+          "CapabilityManager": "Kendall Jackson",
+          "Version": "1.5.9",
+          "EAReferenceID": "EA9985698",
+          "Description": "Cohere Embed is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.02941812574863434,
+          "@search.reranker_score": 1.8328677415847778,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Cohere Embed is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance includes... Tool: Cohere Embed                 Capability: Analytics                 Sub-capability: Pub/Sub                 Manufacturer: IBM                 TEB Status: TEB Approved                 Description: Cohere Embed is used to.",
+              "highlights": "Cohere Embed is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance includes... Tool: Cohere Embed                 Capability: Analytics                 Sub-capability:<em> Pub/Sub </em>                Manufacturer: IBM                 TEB Status: TEB Approved                 Description: Cohere Embed is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Dataflow",
+          "StandardsComments": "Hybrid retrieval and strict filtering supported.",
+          "MetaTagsDescription": "Semantic Ranker: scope or capability related to semantic ranker. Contact Center: scope or capability related to contact center. Cache: scope or capability related to cache. Disaster Recovery: scope or capability related to disaster recovery. Data Engineering: scope or capability related to data engineering. BM25: scope or capability related to bm25.",
+          "Manufacturer": "Snowflake",
+          "SubCapability": "Pub/Sub",
+          "EANotes": "Approved as a standard for enterprise use.",
+          "Capabilities": "Platforms",
+          "TEBStatus": "Deprecated",
+          "StandardCategory": "Product Standard",
+          "MetaTags": "Semantic Ranker, Contact Center, Cache, Disaster Recovery, Data Engineering, BM25",
+          "CapabilityManager": "Drew Harris",
+          "Version": "2.2.1",
+          "EAReferenceID": "EA0305486",
+          "Description": "Dataflow is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.0317540317773819,
+          "@search.reranker_score": 1.781646966934204,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Dataflow is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance includes backup,... Tool: Dataflow                 Capability: Platforms                 Sub-capability: Pub/Sub                 Manufacturer: Snowflake                 TEB Status: Deprecated                 Description: Dataflow is used to.",
+              "highlights": "Dataflow is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance includes backup,... Tool: Dataflow                 Capability: Platforms                 Sub-capability:<em> Pub/Sub </em>                Manufacturer: Snowflake                 TEB Status: Deprecated                 Description: Dataflow is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Redshift",
+          "StandardsComments": "Vendor support SLA reviewed by procurement.",
+          "MetaTagsDescription": "Microservices: scope or capability related to microservices. Compliance: scope or capability related to compliance. Edge: scope or capability related to edge. Vector Search: scope or capability related to vector search. Semantic Ranker: scope or capability related to semantic ranker. Analytics: scope or capability related to analytics.",
+          "Manufacturer": "ServiceNow",
+          "SubCapability": "DNS and Addresses",
+          "EANotes": "Enable logging and tag resources for cost allocation.",
+          "Capabilities": "Messaging",
+          "TEBStatus": "Provisional Standard",
+          "StandardCategory": "Product Standard",
+          "MetaTags": "Microservices, Compliance, Edge, Vector Search, Semantic Ranker, Analytics",
+          "CapabilityManager": "Kendall Jackson",
+          "Version": "2.1.5",
+          "EAReferenceID": "EA3226025",
+          "Description": "Redshift is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.026709401980042458,
+          "@search.reranker_score": 1.7454911470413208,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Redshift is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guid... Tool: Redshift                 Capability: Messaging                 Sub-capability: DNS and Addresses                 Manufacturer: ServiceNow                 TEB Status: Provisional Standard                 Description: Redshift is used to.",
+              "highlights": "Redshift is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guid... Tool: Redshift                 Capability:<em> Messaging                 Sub-capability: </em>DNS and Addresses                 Manufacturer: ServiceNow                 TEB Status: Provisional Standard                 Description: Redshift is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "MySQL Flexible",
+          "StandardsComments": "Enable logging and tag resources for cost allocation.",
+          "MetaTagsDescription": "Customer Experience: scope or capability related to customer experience. Observability: scope or capability related to observability. Backup: scope or capability related to backup. Analytics: scope or capability related to analytics. Networking: scope or capability related to networking. BM25: scope or capability related to bm25.",
+          "Manufacturer": "Redis Labs",
+          "SubCapability": "DNS and Addresses",
+          "EANotes": "Hybrid retrieval and strict filtering supported.",
+          "Capabilities": "Messaging",
+          "TEBStatus": "Provisional Standard",
+          "StandardCategory": "Reference Standard",
+          "MetaTags": "Customer Experience, Observability, Backup, Analytics, Networking, BM25",
+          "CapabilityManager": "Drew Patel",
+          "Version": "1.5.6",
+          "EAReferenceID": "EA2775841",
+          "Description": "MySQL Flexible is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.025019070133566856,
+          "@search.reranker_score": 1.725640892982483,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "MySQL Flexible is used to deliver scalable, reliable capabilities for enterprise workloads. Tool: MySQL Flexible                 Capability: Messaging                 Sub-capability: DNS and Addresses                 Manufacturer: Redis Labs                 TEB Status: Provisional Standard                 Description: MySQL Flexible is used to.",
+              "highlights": "MySQL Flexible is used to deliver scalable, reliable capabilities for enterprise workloads. Tool: MySQL Flexible                 Capability:<em> Messaging                 Sub-capability: </em>DNS and Addresses                 Manufacturer: Redis Labs                 TEB Status: Provisional Standard                 Description: MySQL Flexible is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Cloudflare",
+          "StandardsComments": "Document architecture in the catalog and link runbooks.",
+          "MetaTagsDescription": "Data Engineering: scope or capability related to data engineering. Observability: scope or capability related to observability. Compliance: scope or capability related to compliance. Cost Management: scope or capability related to cost management.",
+          "Manufacturer": "Oracle",
+          "SubCapability": "Backup & DR",
+          "EANotes": "Requires private endpoint and managed identity configuration.",
+          "Capabilities": "Messaging",
+          "TEBStatus": "TEB Not Approved",
+          "StandardCategory": "Reference Standard",
+          "MetaTags": "Data Engineering, Observability, Compliance, Cost Management",
+          "CapabilityManager": "Avery Jackson",
+          "Version": "4.1.5",
+          "EAReferenceID": "EA8465648",
+          "Description": "Cloudflare is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.02322225272655487,
+          "@search.reranker_score": 1.6618363857269287,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Cloudflare is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance inc... Tool: Cloudflare                 Capability: Messaging                 Sub-capability: Backup & DR                 Manufacturer: Oracle                 TEB Status: TEB Not Approved                 Description: Cloudflare is used to.",
+              "highlights": "Cloudflare is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance inc... Tool: Cloudflare                 Capability:<em> Messaging                 Sub-capability: </em>Backup & DR                 Manufacturer: Oracle                 TEB Status: TEB Not Approved                 Description: Cloudflare is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "AKS",
+          "StandardsComments": "Pilot completed with positive feedback from stakeholders.",
+          "MetaTagsDescription": "Serverless: scope or capability related to serverless. DevOps: scope or capability related to devops. Semantic Ranker: scope or capability related to semantic ranker. Contact Center: scope or capability related to contact center. Customer Experience: scope or capability related to customer experience.",
+          "Manufacturer": "Oracle",
+          "SubCapability": "Patch Mgmt",
+          "EANotes": "Provisional until further risk assessment is complete.",
+          "Capabilities": "Messaging",
+          "TEBStatus": "TEB Approved",
+          "StandardCategory": "Legacy",
+          "MetaTags": "Serverless, DevOps, Semantic Ranker, Contact Center, Customer Experience",
+          "CapabilityManager": "Avery Davis",
+          "Version": "3.1.2",
+          "EAReferenceID": "EA2449353",
+          "Description": "AKS is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.027364110574126244,
+          "@search.reranker_score": 1.6405682563781738,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Operational guidance includes backup, monitoring, alerting, and cost optimization practices. Tool: AKS                 Capability: Messaging                 Sub-capability: Patch Mgmt                 Manufacturer: Oracle                 TEB Status: TEB Approved                 Description: AKS is used to deliver scalable, reliable capabilities for.",
+              "highlights": "Operational guidance includes backup, monitoring, alerting, and cost optimization practices. Tool: AKS                 Capability:<em> Messaging                 Sub-capability: </em>Patch Mgmt                 Manufacturer: Oracle                 TEB Status: TEB Approved                 Description: AKS is used to deliver scalable, reliable capabilities for."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Event Hubs",
+          "StandardsComments": "Enable logging and tag resources for cost allocation.",
+          "MetaTagsDescription": "LLM Orchestration: scope or capability related to llm orchestration. Networking: scope or capability related to networking. Observability: scope or capability related to observability.",
+          "Manufacturer": "Zoom",
+          "SubCapability": "Endpoint Security",
+          "EANotes": "Enable logging and tag resources for cost allocation.",
+          "Capabilities": "Messaging",
+          "TEBStatus": "Provisional Standard",
+          "StandardCategory": "Provisional Standard",
+          "MetaTags": "LLM Orchestration, Networking, Observability",
+          "CapabilityManager": "Avery Brown",
+          "Version": "1.4.9",
+          "EAReferenceID": "EA9314919",
+          "Description": "Event Hubs is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.03181818127632141,
+          "@search.reranker_score": 1.6384414434432983,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Event Hubs is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guid... Tool: Event Hubs                 Capability: Messaging                 Sub-capability: Endpoint Security                 Manufacturer: Zoom                 TEB Status: Provisional Standard                 Description: Event Hubs is used to.",
+              "highlights": "Event Hubs is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guid... Tool:<em> Event Hubs </em>                Capability:<em> Messaging                 Sub-capability: </em>Endpoint Security                 Manufacturer: Zoom                 TEB Status: Provisional Standard                 Description:<em> Event Hubs </em>is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Pub/Sub Lite",
+          "StandardsComments": "Vendor support SLA reviewed by procurement.",
+          "MetaTagsDescription": "Cloud Communications: scope or capability related to cloud communications. Observability: scope or capability related to observability. Analytics: scope or capability related to analytics. Compliance: scope or capability related to compliance.",
+          "Manufacturer": "MongoDB",
+          "SubCapability": "SaaS Integration",
+          "EANotes": "Approved as a standard for enterprise use.",
+          "Capabilities": "Databases",
+          "TEBStatus": "Deprecated",
+          "StandardCategory": "Legacy",
+          "MetaTags": "Cloud Communications, Observability, Analytics, Compliance",
+          "CapabilityManager": "Avery Patel",
+          "Version": "1.7.9",
+          "EAReferenceID": "EA3246095",
+          "Description": "Pub/Sub Lite is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.03253968432545662,
+          "@search.reranker_score": 1.6377325057983398,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Pub/Sub Lite is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Tool: Pub/Sub Lite                 Capability: Databases                 Sub-capability: SaaS Integration                 Manufacturer: MongoDB                 TEB.",
+              "highlights": "<em>Pub/Sub Lite </em>is used to<em> deliver scalable, reliable capabilities for enterprise workloads.</em> It integrates with identity, networking, and observability services for end‑to‑end governance. Tool:<em> Pub/Sub Lite </em>                Capability: Databases                 Sub-capability: SaaS Integration                 Manufacturer: MongoDB                 TEB."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Pub/Sub Lite",
+          "StandardsComments": "Hybrid retrieval and strict filtering supported.",
+          "MetaTagsDescription": "Analytics: scope or capability related to analytics. Automation: scope or capability related to automation. AI Experience Platform: scope or capability related to ai experience platform. Edge: scope or capability related to edge. Semantic Ranker: scope or capability related to semantic ranker. Serverless: scope or capability related to serverless.",
+          "Manufacturer": "Databricks",
+          "SubCapability": "Queueing",
+          "EANotes": "Vendor support SLA reviewed by procurement.",
+          "Capabilities": "Identity & Access Mgmt",
+          "TEBStatus": "Under Review",
+          "StandardCategory": "Legacy",
+          "MetaTags": "Analytics, Automation, AI Experience Platform, Edge, Semantic Ranker, Serverless",
+          "CapabilityManager": "Kendall Kim",
+          "Version": "4.6.9",
+          "EAReferenceID": "EA0184514",
+          "Description": "Pub/Sub Lite is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.032786883413791656,
+          "@search.reranker_score": 1.6356056928634644,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Pub/Sub Lite is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Tool: Pub/Sub Lite                 Capability: Identity & Access Mgmt                 Sub-capability: Queueing                 Manufacturer: Databricks             .",
+              "highlights": "<em>Pub/Sub Lite </em>is used to<em> deliver scalable, reliable capabilities for enterprise workloads.</em> It integrates with identity, networking, and observability services for end‑to‑end governance. Tool:<em> Pub/Sub Lite </em>                Capability: Identity & Access Mgmt<em>                 Sub-capability: </em>Queueing                 Manufacturer: Databricks             ."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Kong Gateway",
+          "StandardsComments": "Approved as a standard for enterprise use.",
+          "MetaTagsDescription": "Contact Center: scope or capability related to contact center. Serverless: scope or capability related to serverless. Customer Experience: scope or capability related to customer experience. Analytics: scope or capability related to analytics.",
+          "Manufacturer": "NVIDIA",
+          "SubCapability": "Backup & DR",
+          "EANotes": "Document architecture in the catalog and link runbooks.",
+          "Capabilities": "Messaging",
+          "TEBStatus": "Deprecated",
+          "StandardCategory": "Provisional Standard",
+          "MetaTags": "Contact Center, Serverless, Customer Experience, Analytics",
+          "CapabilityManager": "Jordan Anderson",
+          "Version": "2.4.3",
+          "EAReferenceID": "EA5009788",
+          "Description": "Kong Gateway is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.027984343469142914,
+          "@search.reranker_score": 1.5760549306869507,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Kong Gateway is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance inc... Tool: Kong Gateway                 Capability: Messaging                 Sub-capability: Backup & DR                 Manufacturer: NVIDIA                 TEB Status: Deprecated                 Description: Kong Gateway is used to.",
+              "highlights": "Kong Gateway is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance inc... Tool: Kong Gateway                 Capability:<em> Messaging                 Sub-capability: </em>Backup & DR                 Manufacturer: NVIDIA                 TEB Status: Deprecated                 Description: Kong Gateway is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Event Hubs",
+          "StandardsComments": "Enable logging and tag resources for cost allocation.",
+          "MetaTagsDescription": "Networking: scope or capability related to networking. Automation: scope or capability related to automation. UC Platform: scope or capability related to uc platform. Observability: scope or capability related to observability.",
+          "Manufacturer": "VMware",
+          "SubCapability": "Queueing",
+          "EANotes": "Enable logging and tag resources for cost allocation.",
+          "Capabilities": "Messaging",
+          "TEBStatus": "TEB Not Approved",
+          "StandardCategory": "Provisional Standard",
+          "MetaTags": "Networking, Automation, UC Platform, Observability",
+          "CapabilityManager": "Taylor Williams",
+          "Version": "1.6.5",
+          "EAReferenceID": "EA1065133",
+          "Description": "Event Hubs is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.0317540317773819,
+          "@search.reranker_score": 1.5746370553970337,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Event Hubs is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance includ... Tool: Event Hubs                 Capability: Messaging                 Sub-capability: Queueing                 Manufacturer: VMware                 TEB Status: TEB Not Approved                 Description: Event Hubs is used to.",
+              "highlights": "Event Hubs is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance includ... Tool:<em> Event Hubs </em>                Capability:<em> Messaging                 Sub-capability: </em>Queueing                 Manufacturer: VMware                 TEB Status: TEB Not Approved                 Description:<em> Event Hubs </em>is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Cosmos DB",
+          "StandardsComments": "Deprecated for new deployments; maintain only.",
+          "MetaTagsDescription": "RAG: scope or capability related to rag. BM25: scope or capability related to bm25. Automation: scope or capability related to automation.",
+          "Manufacturer": "Redis Labs",
+          "SubCapability": "Routing",
+          "EANotes": "Approved as a standard for enterprise use.",
+          "Capabilities": "Messaging",
+          "TEBStatus": "Under Review",
+          "StandardCategory": "Internal Only",
+          "MetaTags": "RAG, BM25, Automation",
+          "CapabilityManager": "Avery Martinez",
+          "Version": "1.2.6",
+          "EAReferenceID": "EA2400499",
+          "Description": "Cosmos DB is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.02967032976448536,
+          "@search.reranker_score": 1.5469884872436523,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Cosmos DB is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance includes b... Tool: Cosmos DB                 Capability: Messaging                 Sub-capability: Routing                 Manufacturer: Redis Labs                 TEB Status: Under Review                 Description: Cosmos DB is used to.",
+              "highlights": "Cosmos DB is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance includes b... Tool: Cosmos DB                 Capability:<em> Messaging                 Sub-capability: </em>Routing                 Manufacturer: Redis Labs                 TEB Status: Under Review                 Description: Cosmos DB is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Event Hubs",
+          "StandardsComments": "Requires private endpoint and managed identity configuration.",
+          "MetaTagsDescription": "CI/CD: scope or capability related to ci/cd. BM25: scope or capability related to bm25. Cache: scope or capability related to cache. Vector Search: scope or capability related to vector search. Backup: scope or capability related to backup. LLM Orchestration: scope or capability related to llm orchestration.",
+          "Manufacturer": "Snowflake",
+          "SubCapability": "ETL/ELT",
+          "EANotes": "Document architecture in the catalog and link runbooks.",
+          "Capabilities": "Security",
+          "TEBStatus": "Deprecated",
+          "StandardCategory": "Reference Standard",
+          "MetaTags": "CI/CD, BM25, Cache, Vector Search, Backup, LLM Orchestration",
+          "CapabilityManager": "Sam Thomas",
+          "Version": "2.6.9",
+          "EAReferenceID": "EA0640909",
+          "Description": "Event Hubs is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.029469121247529984,
+          "@search.reranker_score": 1.1634528636932373,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Event Hubs is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, ... Tool: Event Hubs                 Capability: Security                 Sub-capability: ETL/ELT                 Manufacturer: Snowflake                 TEB Status: Deprecated                 Description: Event Hubs is used to.",
+              "highlights": "<em>Event Hubs </em>is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, ... Tool:<em> Event Hubs </em>                Capability: Security                 Sub-capability: ETL/ELT                 Manufacturer: Snowflake                 TEB Status: Deprecated                 Description:<em> Event Hubs </em>is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "LangChain Server",
+          "StandardsComments": "Deprecated for new deployments; maintain only.",
+          "MetaTagsDescription": "Contact Center: scope or capability related to contact center. Vector Search: scope or capability related to vector search. Cloud Communications: scope or capability related to cloud communications. Customer Experience: scope or capability related to customer experience.",
+          "Manufacturer": "MongoDB",
+          "SubCapability": "Observability",
+          "EANotes": "Vendor support SLA reviewed by procurement.",
+          "Capabilities": "DevOps",
+          "TEBStatus": "Provisional Standard",
+          "StandardCategory": "Provisional Standard",
+          "MetaTags": "Contact Center, Vector Search, Cloud Communications, Customer Experience",
+          "CapabilityManager": "Jordan Jackson",
+          "Version": "2.2.5",
+          "EAReferenceID": "EA9570154",
+          "Description": "LangChain Server is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.023334689438343048,
+          "@search.reranker_score": 1.11524498462677,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "LangChain Server is used to deliver scalable, reliable capabilities for enterprise workloads. It inte... Tool: LangChain Server                 Capability: DevOps                 Sub-capability: Observability                 Manufacturer: MongoDB                 TEB Status: Provisional Standard                 Description: LangChain Server is used.",
+              "highlights": "<em>LangChain </em>Server is used to deliver<em> scalable, </em>reliable capabilities for enterprise workloads. It inte... Tool: LangChain Server                 Capability:<em> DevOps                 Sub-capability: </em>Observability<em>                 Manufacturer: MongoDB </em>                TEB Status: Provisional Standard                 Description: LangChain Server is used."
+            }
+          ]
+        },
+        {
+          "NameofTools": "GitHub Actions",
+          "StandardsComments": "Pilot completed with positive feedback from stakeholders.",
+          "MetaTagsDescription": "Cost Management: scope or capability related to cost management. Cloud Communications: scope or capability related to cloud communications. Compliance: scope or capability related to compliance.",
+          "Manufacturer": "OpenAI",
+          "SubCapability": "Queueing",
+          "EANotes": "Enable logging and tag resources for cost allocation.",
+          "Capabilities": "Content Services",
+          "TEBStatus": "Under Review",
+          "StandardCategory": "Provisional Standard",
+          "MetaTags": "Cost Management, Cloud Communications, Compliance",
+          "CapabilityManager": "Alex Patel",
+          "Version": "2.7.3",
+          "EAReferenceID": "EA6562729",
+          "Description": "GitHub Actions is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.02063492126762867,
+          "@search.reranker_score": 1.0925589799880981,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "GitHub Actions is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Tool: GitHub Actions                 Capability: Content Services                 Sub-capability: Queueing                 Manufacturer: OpenAI                .",
+              "highlights": "<em>GitHub Actions </em>is used to<em> deliver scalable, reliable capabilities for enterprise workloads.</em> It integrates with identity, networking, and observability services for end‑to‑end governance. Tool: GitHub Actions                 Capability:<em> Content Services                 Sub-capability: Queueing                 Manufacturer: OpenAI </em>               ."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Cosmos DB",
+          "StandardsComments": "Vendor support SLA reviewed by procurement.",
+          "MetaTagsDescription": "Data Engineering: scope or capability related to data engineering. Analytics: scope or capability related to analytics. Backup: scope or capability related to backup. UC Platform: scope or capability related to uc platform. Cache: scope or capability related to cache.",
+          "Manufacturer": "MongoDB",
+          "SubCapability": "Data Lake",
+          "EANotes": "Provisional until further risk assessment is complete.",
+          "Capabilities": "Content Services",
+          "TEBStatus": "Provisional Standard",
+          "StandardCategory": "Legacy",
+          "MetaTags": "Data Engineering, Analytics, Backup, UC Platform, Cache",
+          "CapabilityManager": "Kendall Thomas",
+          "Version": "3.2.1",
+          "EAReferenceID": "EA3552312",
+          "Description": "Cosmos DB is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.021568628028035164,
+          "@search.reranker_score": 1.047895908355713,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Cosmos DB is used to deliver scalable, reliable capabilities for enterprise workloads. Tool: Cosmos DB                 Capability: Content Services                 Sub-capability: Data Lake                 Manufacturer: MongoDB                 TEB Status: Provisional Standard                 Description: Cosmos DB is used to deliver scalable,.",
+              "highlights": "<em>Cosmos DB </em>is used to deliver<em> scalable, reliable capabilities </em>for<em> enterprise workloads.</em> Tool: Cosmos DB                 Capability:<em> Content Services                 Sub-capability: </em>Data Lake                 Manufacturer:<em> MongoDB </em>                TEB Status: Provisional Standard                 Description: Cosmos DB is used to deliver scalable,."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Sagemaker",
+          "StandardsComments": "Pilot completed with positive feedback from stakeholders.",
+          "MetaTagsDescription": "CI/CD: scope or capability related to ci/cd. Compliance: scope or capability related to compliance. Vector Search: scope or capability related to vector search. Contact Center: scope or capability related to contact center.",
+          "Manufacturer": "Adobe",
+          "SubCapability": "Edge CDN",
+          "EANotes": "Document architecture in the catalog and link runbooks.",
+          "Capabilities": "Databases",
+          "TEBStatus": "Provisional Standard",
+          "StandardCategory": "Product Standard",
+          "MetaTags": "CI/CD, Compliance, Vector Search, Contact Center",
+          "CapabilityManager": "Cameron Jackson",
+          "Version": "1.9.7",
+          "EAReferenceID": "EA0972896",
+          "Description": "Sagemaker is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.018927177414298058,
+          "@search.reranker_score": 1.036552906036377,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Sagemaker is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance includ... Tool: Sagemaker                 Capability: Databases                 Sub-capability: Edge CDN                 Manufacturer: Adobe                 TEB Status: Provisional Standard                 Description: Sagemaker is used to.",
+              "highlights": "<em>Sagemaker </em>is used to deliver<em> scalable, reliable capabilities </em>for<em> enterprise workloads.</em> Operational guidance includ... Tool: Sagemaker                 Capability: Databases                 Sub-capability:<em> Edge CDN                 Manufacturer: Adobe </em>                TEB Status: Provisional Standard                 Description: Sagemaker is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Dataflow",
+          "StandardsComments": "Enable logging and tag resources for cost allocation.",
+          "MetaTagsDescription": "Cache: scope or capability related to cache. BM25: scope or capability related to bm25. RAG: scope or capability related to rag. Disaster Recovery: scope or capability related to disaster recovery.",
+          "Manufacturer": "OpenAI",
+          "SubCapability": "Patch Mgmt",
+          "EANotes": "Requires private endpoint and managed identity configuration.",
+          "Capabilities": "Collaboration",
+          "TEBStatus": "TEB Not Approved",
+          "StandardCategory": "Provisional Standard",
+          "MetaTags": "Cache, BM25, RAG, Disaster Recovery",
+          "CapabilityManager": "Alex Lewis",
+          "Version": "2.0.1",
+          "EAReferenceID": "EA2082677",
+          "Description": "Dataflow is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.01892857253551483,
+          "@search.reranker_score": 1.0273367166519165,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Dataflow is used to deliver scalable, reliable capabilities for enterprise workloads. Tool: Dataflow                 Capability: Collaboration                 Sub-capability: Patch Mgmt                 Manufacturer: OpenAI                 TEB Status: TEB Not Approved                 Description: Dataflow is used to deliver scalable, reliable.",
+              "highlights": "<em>Dataflow </em>is used to deliver<em> scalable, </em>reliable<em> capabilities </em>for enterprise<em> workloads.</em> Tool: Dataflow                 Capability:<em> Collaboration                 Sub-capability: </em>Patch Mgmt                 Manufacturer: OpenAI                 TEB Status: TEB Not Approved                 Description: Dataflow is used to deliver scalable, reliable."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Cosmos DB",
+          "StandardsComments": "Provisional until further risk assessment is complete.",
+          "MetaTagsDescription": "CI/CD: scope or capability related to ci/cd. Data Engineering: scope or capability related to data engineering. BM25: scope or capability related to bm25.",
+          "Manufacturer": "Atlassian",
+          "SubCapability": "Data Lake",
+          "EANotes": "Vendor support SLA reviewed by procurement.",
+          "Capabilities": "Networking",
+          "TEBStatus": "Provisional Standard",
+          "StandardCategory": "Product Standard",
+          "MetaTags": "CI/CD, Data Engineering, BM25",
+          "CapabilityManager": "Sam Brown",
+          "Version": "1.3.5",
+          "EAReferenceID": "EA3749894",
+          "Description": "Cosmos DB is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.018670707941055298,
+          "@search.reranker_score": 1.010322093963623,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Cosmos DB is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance ... Tool: Cosmos DB                 Capability: Networking                 Sub-capability: Data Lake                 Manufacturer: Atlassian                 TEB Status: Provisional Standard                 Description: Cosmos DB is used to.",
+              "highlights": "<em>Cosmos DB </em>is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance ... Tool: Cosmos DB                 Capability:<em> Networking                 Sub-capability: </em>Data Lake                 Manufacturer: Atlassian                 TEB Status: Provisional Standard                 Description: Cosmos DB is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Istio",
+          "StandardsComments": "Vendor support SLA reviewed by procurement.",
+          "MetaTagsDescription": "Data Engineering: scope or capability related to data engineering. Automation: scope or capability related to automation. Vector Search: scope or capability related to vector search. LLM Orchestration: scope or capability related to llm orchestration. Agent Assist: scope or capability related to agent assist.",
+          "Manufacturer": "Adobe",
+          "SubCapability": "Feature Store",
+          "EANotes": "Enable logging and tag resources for cost allocation.",
+          "Capabilities": "Finance Tools",
+          "TEBStatus": "Under Review",
+          "StandardCategory": "Product Standard",
+          "MetaTags": "Data Engineering, Automation, Vector Search, LLM Orchestration, Agent Assist",
+          "CapabilityManager": "Avery Brown",
+          "Version": "4.7.5",
+          "EAReferenceID": "EA6179640",
+          "Description": "Istio is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.016888225451111794,
+          "@search.reranker_score": 1.0067774057388306,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Istio is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance includes backup, ... Tool: Istio                 Capability: Finance Tools                 Sub-capability: Feature Store                 Manufacturer: Adobe                 TEB Status: Under Review                 Description: Istio is used to.",
+              "highlights": "<em>Istio </em>is used to deliver<em> scalable, </em>reliable capabilities for enterprise workloads. Operational guidance includes backup, ... Tool: Istio                 Capability: Finance Tools<em>                 Sub-capability: </em>Feature Store                 Manufacturer:<em> Adobe </em>                TEB Status: Under Review                 Description: Istio is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Kafka",
+          "StandardsComments": "Approved as a standard for enterprise use.",
+          "MetaTagsDescription": "RAG: scope or capability related to rag. Agent Assist: scope or capability related to agent assist. CI/CD: scope or capability related to ci/cd.",
+          "Manufacturer": "Amazon",
+          "SubCapability": "Key Management",
+          "EANotes": "Enable logging and tag resources for cost allocation.",
+          "Capabilities": "DevOps",
+          "TEBStatus": "Deprecated",
+          "StandardCategory": "Internal Only",
+          "MetaTags": "RAG, Agent Assist, CI/CD",
+          "CapabilityManager": "Shawn Thomas",
+          "Version": "2.7.5",
+          "EAReferenceID": "EA8536153",
+          "Description": "Kafka is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.025833334773778915,
+          "@search.reranker_score": 1.003232717514038,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Kafka is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance includes backup, monitor... Tool: Kafka                 Capability: DevOps                 Sub-capability: Key Management                 Manufacturer: Amazon                 TEB Status: Deprecated                 Description: Kafka is used to.",
+              "highlights": "<em>Kafka </em>is used to deliver<em> scalable, </em>reliable capabilities for enterprise<em> workloads.</em> Operational guidance includes backup, monitor... Tool:<em> Kafka </em>                Capability:<em> DevOps                 Sub-capability: </em>Key Management                 Manufacturer: Amazon                 TEB Status: Deprecated                 Description:<em> Kafka </em>is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Secrets Manager",
+          "StandardsComments": "Deprecated for new deployments; maintain only.",
+          "MetaTagsDescription": "LLM Orchestration: scope or capability related to llm orchestration. Serverless: scope or capability related to serverless. Edge: scope or capability related to edge. Compliance: scope or capability related to compliance. Analytics: scope or capability related to analytics. AI Experience Platform: scope or capability related to ai experience platform.",
+          "Manufacturer": "Confluent",
+          "SubCapability": "Data Warehouse",
+          "EANotes": "Hybrid retrieval and strict filtering supported.",
+          "Capabilities": "Finance Tools",
+          "TEBStatus": "Provisional Standard",
+          "StandardCategory": "Internal Only",
+          "MetaTags": "LLM Orchestration, Serverless, Edge, Compliance, Analytics, AI Experience Platform",
+          "CapabilityManager": "Taylor Harris",
+          "Version": "4.9.6",
+          "EAReferenceID": "EA0596401",
+          "Description": "Secrets Manager is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.020802218466997147,
+          "@search.reranker_score": 0.9996880888938904,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Secrets Manager is used to deliver scalable, reliable capabilities for enterprise workloads. Tool: Secrets Manager                 Capability: Finance Tools                 Sub-capability: Data Warehouse                 Manufacturer: Confluent                 TEB Status: Provisional Standard                 Description: Secrets Manager is used to.",
+              "highlights": "<em>Secrets Manager </em>is used to deliver<em> scalable, </em>reliable capabilities for enterprise workloads. Tool: Secrets Manager                 Capability: Finance Tools<em>                 Sub-capability: </em>Data Warehouse                 Manufacturer: Confluent                 TEB Status: Provisional Standard                 Description: Secrets Manager is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Prometheus",
+          "StandardsComments": "Hybrid retrieval and strict filtering supported.",
+          "MetaTagsDescription": "Serverless: scope or capability related to serverless. Compliance: scope or capability related to compliance. BM25: scope or capability related to bm25. Contact Center: scope or capability related to contact center. Vector Search: scope or capability related to vector search. Cost Management: scope or capability related to cost management.",
+          "Manufacturer": "Databricks",
+          "SubCapability": "Routing",
+          "EANotes": "Enable logging and tag resources for cost allocation.",
+          "Capabilities": "Collaboration",
+          "TEBStatus": "Provisional Standard",
+          "StandardCategory": "Product Standard",
+          "MetaTags": "Serverless, Compliance, BM25, Contact Center, Vector Search, Cost Management",
+          "CapabilityManager": "Cameron Nguyen",
+          "Version": "4.7.9",
+          "EAReferenceID": "EA8156149",
+          "Description": "Prometheus is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.022687826305627823,
+          "@search.reranker_score": 0.9954344630241394,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Prometheus is used to deliver scalable, reliable capabilities for enterprise workloads. Tool: Prometheus                 Capability: Collaboration                 Sub-capability: Routing                 Manufacturer: Databricks                 TEB Status: Provisional Standard                 Description: Prometheus is used to deliver scalable,.",
+              "highlights": "<em>Prometheus </em>is used to<em> deliver scalable, reliable capabilities </em>for<em> enterprise workloads.</em> Tool: Prometheus                 Capability:<em> Collaboration                 Sub-capability: </em>Routing                 Manufacturer: Databricks                 TEB Status: Provisional Standard                 Description: Prometheus is used to deliver scalable,."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Dataflow",
+          "StandardsComments": "Deprecated for new deployments; maintain only.",
+          "MetaTagsDescription": "Semantic Ranker: scope or capability related to semantic ranker. Customer Experience: scope or capability related to customer experience. Data Engineering: scope or capability related to data engineering. Cloud Communications: scope or capability related to cloud communications. PII: scope or capability related to pii. RAG: scope or capability related to rag.",
+          "Manufacturer": "Redis Labs",
+          "SubCapability": "Routing",
+          "EANotes": "Hybrid retrieval and strict filtering supported.",
+          "Capabilities": "AI/ML",
+          "TEBStatus": "Under Review",
+          "StandardCategory": "Reference Standard",
+          "MetaTags": "Semantic Ranker, Customer Experience, Data Engineering, Cloud Communications, PII, RAG",
+          "CapabilityManager": "Sam Thomas",
+          "Version": "2.8.3",
+          "EAReferenceID": "EA8350305",
+          "Description": "Dataflow is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.02506226673722267,
+          "@search.reranker_score": 0.9918897747993469,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Dataflow is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Tool: Dataflow                 Capability: AI/ML                 Sub-capability: Routing                 Manufacturer: Redis Labs                 TEB Status: Under.",
+              "highlights": "<em>Dataflow </em>is used to deliver<em> scalable, </em>reliable<em> capabilities </em>for<em> enterprise workloads.</em> It integrates with identity, networking, and observability services for end‑to‑end governance. Tool: Dataflow                 Capability:<em> AI/ML                 Sub-capability: </em>Routing                 Manufacturer: Redis Labs                 TEB Status: Under."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Kafka",
+          "StandardsComments": "Document architecture in the catalog and link runbooks.",
+          "MetaTagsDescription": "DevOps: scope or capability related to devops. Serverless: scope or capability related to serverless. Disaster Recovery: scope or capability related to disaster recovery. Automation: scope or capability related to automation.",
+          "Manufacturer": "Microsoft",
+          "SubCapability": "Secrets Mgmt",
+          "EANotes": "Pilot completed with positive feedback from stakeholders.",
+          "Capabilities": "DevOps",
+          "TEBStatus": "Deprecated",
+          "StandardCategory": "Provisional Standard",
+          "MetaTags": "DevOps, Serverless, Disaster Recovery, Automation",
+          "CapabilityManager": "Robin Williams",
+          "Version": "1.6.5",
+          "EAReferenceID": "EA3990490",
+          "Description": "Kafka is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.02283596247434616,
+          "@search.reranker_score": 0.9848003387451172,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Kafka is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance includes backup, monito... Tool: Kafka                 Capability: DevOps                 Sub-capability: Secrets Mgmt                 Manufacturer: Microsoft                 TEB Status: Deprecated                 Description: Kafka is used to.",
+              "highlights": "<em>Kafka </em>is used to deliver<em> scalable, </em>reliable capabilities for enterprise<em> workloads.</em> Operational guidance includes backup, monito... Tool:<em> Kafka </em>                Capability:<em> DevOps                 Sub-capability: </em>Secrets Mgmt                 Manufacturer: Microsoft                 TEB Status: Deprecated                 Description:<em> Kafka </em>is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Redshift",
+          "StandardsComments": "Requires private endpoint and managed identity configuration.",
+          "MetaTagsDescription": "Customer Experience: scope or capability related to customer experience. Cost Management: scope or capability related to cost management. Edge: scope or capability related to edge. Contact Center: scope or capability related to contact center. Observability: scope or capability related to observability.",
+          "Manufacturer": "Microsoft",
+          "SubCapability": "API Gateway",
+          "EANotes": "Provisional until further risk assessment is complete.",
+          "Capabilities": "Collaboration",
+          "TEBStatus": "Provisional Standard",
+          "StandardCategory": "Internal Only",
+          "MetaTags": "Customer Experience, Cost Management, Edge, Contact Center, Observability",
+          "CapabilityManager": "Alex Wilson",
+          "Version": "2.4.4",
+          "EAReferenceID": "EA6226838",
+          "Description": "Redshift is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.02051335945725441,
+          "@search.reranker_score": 0.9734573364257812,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Redshift is used to deliver scalable, reliable capabilities for enterprise workloads. Tool: Redshift                 Capability: Collaboration                 Sub-capability: API Gateway                 Manufacturer: Microsoft                 TEB Status: Provisional Standard                 Description: Redshift is used to deliver scalable,.",
+              "highlights": "<em>Redshift </em>is used to<em> deliver scalable, reliable capabilities for enterprise workloads.</em> Tool: Redshift                 Capability:<em> Collaboration                 Sub-capability: </em>API Gateway                 Manufacturer: Microsoft                 TEB Status: Provisional Standard                 Description: Redshift is used to deliver scalable,."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Prometheus",
+          "StandardsComments": "Enable logging and tag resources for cost allocation.",
+          "MetaTagsDescription": "Backup: scope or capability related to backup. Semantic Ranker: scope or capability related to semantic ranker. Microservices: scope or capability related to microservices. Contact Center: scope or capability related to contact center. Edge: scope or capability related to edge.",
+          "Manufacturer": "Databricks",
+          "SubCapability": "Queueing",
+          "EANotes": "Requires private endpoint and managed identity configuration.",
+          "Capabilities": "DevOps",
+          "TEBStatus": "TEB Not Approved",
+          "StandardCategory": "Product Standard",
+          "MetaTags": "Backup, Semantic Ranker, Microservices, Contact Center, Edge",
+          "CapabilityManager": "Morgan Martinez",
+          "Version": "3.0.2",
+          "EAReferenceID": "EA3511615",
+          "Description": "Prometheus is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.019914651289582253,
+          "@search.reranker_score": 0.9564428329467773,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Prometheus is used to deliver scalable, reliable capabilities for enterprise workloads. Tool: Prometheus                 Capability: DevOps                 Sub-capability: Queueing                 Manufacturer: Databricks                 TEB Status: TEB Not Approved                 Description: Prometheus is used to deliver scalable, reliable.",
+              "highlights": "<em>Prometheus </em>is used to<em> deliver scalable, reliable capabilities </em>for<em> enterprise workloads.</em> Tool: Prometheus                 Capability:<em> DevOps                 Sub-capability: Queueing </em>                Manufacturer: Databricks                 TEB Status: TEB Not Approved                 Description: Prometheus is used to deliver scalable, reliable."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Redis Enterprise",
+          "StandardsComments": "Hybrid retrieval and strict filtering supported.",
+          "MetaTagsDescription": "Data Engineering: scope or capability related to data engineering. Cloud Communications: scope or capability related to cloud communications. LLM Orchestration: scope or capability related to llm orchestration. Contact Center: scope or capability related to contact center.",
+          "Manufacturer": "VMware",
+          "SubCapability": "Endpoint Security",
+          "EANotes": "Vendor support SLA reviewed by procurement.",
+          "Capabilities": "Content Services",
+          "TEBStatus": "Provisional Standard",
+          "StandardCategory": "Internal Only",
+          "MetaTags": "Data Engineering, Cloud Communications, LLM Orchestration, Contact Center",
+          "CapabilityManager": "Alex Williams",
+          "Version": "3.3.2",
+          "EAReferenceID": "EA4701687",
+          "Description": "Redis Enterprise is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.018812932074069977,
+          "@search.reranker_score": 0.9550249576568604,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Redis Enterprise is used to deliver scalable, reliable capabilities for enterprise workloads. Tool: Redis Enterprise                 Capability: Content Services                 Sub-capability: Endpoint Security                 Manufacturer: VMware                 TEB Status: Provisional Standard                 Description: Redis Enterprise is.",
+              "highlights": "<em>Redis Enterprise </em>is used to<em> deliver scalable, reliable capabilities </em>for<em> enterprise workloads.</em> Tool: Redis Enterprise                 Capability:<em> Content Services                 Sub-capability: </em>Endpoint Security                 Manufacturer: VMware                 TEB Status: Provisional Standard                 Description: Redis Enterprise is."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Prometheus",
+          "StandardsComments": "Enable logging and tag resources for cost allocation.",
+          "MetaTagsDescription": "Compliance: scope or capability related to compliance. DevOps: scope or capability related to devops. Serverless: scope or capability related to serverless. Cost Management: scope or capability related to cost management. RAG: scope or capability related to rag.",
+          "Manufacturer": "Elastic",
+          "SubCapability": "API Gateway",
+          "EANotes": "Meets security baselines and compliance requirements.",
+          "Capabilities": "Finance Tools",
+          "TEBStatus": "TEB Approved",
+          "StandardCategory": "Legacy",
+          "MetaTags": "Compliance, DevOps, Serverless, Cost Management, RAG",
+          "CapabilityManager": "Taylor Wilson",
+          "Version": "3.6.2",
+          "EAReferenceID": "EA9702838",
+          "Description": "Prometheus is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.021961063146591187,
+          "@search.reranker_score": 0.9195780158042908,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Prometheus is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end ... Tool: Prometheus                 Capability: Finance Tools                 Sub-capability: API Gateway                 Manufacturer: Elastic                 TEB Status: TEB.",
+              "highlights": "<em>Prometheus </em>is used to<em> deliver scalable, </em>reliable<em> capabilities </em>for<em> enterprise workloads.</em> It integrates with identity, networking, and observability services for end‑to‑end ... Tool: Prometheus                 Capability: Finance Tools<em>                 Sub-capability: </em>API Gateway                 Manufacturer: Elastic                 TEB Status: TEB."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Elastic Observability",
+          "StandardsComments": "Approved as a standard for enterprise use.",
+          "MetaTagsDescription": "UC Platform: scope or capability related to uc platform. Contact Center: scope or capability related to contact center. LLM Orchestration: scope or capability related to llm orchestration. Networking: scope or capability related to networking. RAG: scope or capability related to rag.",
+          "Manufacturer": "Confluent",
+          "SubCapability": "Object Storage",
+          "EANotes": "Enable logging and tag resources for cost allocation.",
+          "Capabilities": "DevOps",
+          "TEBStatus": "TEB Approved",
+          "StandardCategory": "Reference Standard",
+          "MetaTags": "UC Platform, Contact Center, LLM Orchestration, Networking, RAG",
+          "CapabilityManager": "Reese Thomas",
+          "Version": "1.6.7",
+          "EAReferenceID": "EA0515319",
+          "Description": "Elastic Observability is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.017649240791797638,
+          "@search.reranker_score": 0.9131975769996643,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Elastic Observability is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observab... Tool: Elastic Observability                 Capability: DevOps                 Sub-capability: Object Storage                 Manufacturer: Confluent                 TEB Status: TEB Approved   .",
+              "highlights": "<em>Elastic Observability </em>is used to deliver<em> scalable, </em>reliable capabilities for<em> enterprise workloads.</em> It integrates with identity, networking, and observab... Tool: Elastic Observability                 Capability:<em> DevOps                 Sub-capability: </em>Object Storage<em>                 Manufacturer: </em>Confluent                 TEB Status: TEB Approved   ."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Dataflow",
+          "StandardsComments": "Requires private endpoint and managed identity configuration.",
+          "MetaTagsDescription": "Automation: scope or capability related to automation. Customer Experience: scope or capability related to customer experience. RAG: scope or capability related to rag.",
+          "Manufacturer": "HashiCorp",
+          "SubCapability": "Edge CDN",
+          "EANotes": "Enable logging and tag resources for cost allocation.",
+          "Capabilities": "Platforms",
+          "TEBStatus": "Deprecated",
+          "StandardCategory": "Reference Standard",
+          "MetaTags": "Automation, Customer Experience, RAG",
+          "CapabilityManager": "Casey Brown",
+          "Version": "4.1.7",
+          "EAReferenceID": "EA1256746",
+          "Description": "Dataflow is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.018997224047780037,
+          "@search.reranker_score": 0.9004366993904114,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Dataflow is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance includes backup... Tool: Dataflow                 Capability: Platforms                 Sub-capability: Edge CDN                 Manufacturer: HashiCorp                 TEB Status: Deprecated                 Description: Dataflow is used to.",
+              "highlights": "<em>Dataflow </em>is used to deliver<em> scalable, </em>reliable<em> capabilities </em>for<em> enterprise workloads.</em> Operational guidance includes backup... Tool: Dataflow                 Capability:<em> Platforms                 Sub-capability: Edge CDN </em>                Manufacturer: HashiCorp                 TEB Status: Deprecated                 Description: Dataflow is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "API Management",
+          "StandardsComments": "Requires private endpoint and managed identity configuration.",
+          "MetaTagsDescription": "Disaster Recovery: scope or capability related to disaster recovery. AI Experience Platform: scope or capability related to ai experience platform. Contact Center: scope or capability related to contact center. DevOps: scope or capability related to devops. Cost Management: scope or capability related to cost management. Observability: scope or capability related to observability.",
+          "Manufacturer": "Adobe",
+          "SubCapability": "Queueing",
+          "EANotes": "Vendor support SLA reviewed by procurement.",
+          "Capabilities": "Platforms",
+          "TEBStatus": "Under Review",
+          "StandardCategory": "Provisional Standard",
+          "MetaTags": "Disaster Recovery, AI Experience Platform, Contact Center, DevOps, Cost Management, Observability",
+          "CapabilityManager": "Avery Patel",
+          "Version": "1.7.7",
+          "EAReferenceID": "EA7839084",
+          "Description": "API Management is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.024415206164121628,
+          "@search.reranker_score": 0.882713258266449,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "API Management is used to deliver scalable, reliable capabilities for enterprise workloads. Tool: API Management                 Capability: Platforms                 Sub-capability: Queueing                 Manufacturer: Adobe                 TEB Status: Under Review                 Description: API Management is used to deliver scalable,.",
+              "highlights": "<em>API Management </em>is used to deliver scalable, reliable capabilities for enterprise workloads. Tool: API Management                 Capability:<em> Platforms </em>                Sub-capability:<em> Queueing </em>                Manufacturer:<em> Adobe                 TEB </em>Status: Under Review                 Description: API Management is used to deliver scalable,."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Snowflake Core",
+          "StandardsComments": "Approved as a standard for enterprise use.",
+          "MetaTagsDescription": "Customer Experience: scope or capability related to customer experience. Semantic Ranker: scope or capability related to semantic ranker. Data Engineering: scope or capability related to data engineering. Disaster Recovery: scope or capability related to disaster recovery. Networking: scope or capability related to networking.",
+          "Manufacturer": "MongoDB",
+          "SubCapability": "Backup & DR",
+          "EANotes": "Provisional until further risk assessment is complete.",
+          "Capabilities": "Content Services",
+          "TEBStatus": "Under Review",
+          "StandardCategory": "Product Standard",
+          "MetaTags": "Customer Experience, Semantic Ranker, Data Engineering, Disaster Recovery, Networking",
+          "CapabilityManager": "Casey Kim",
+          "Version": "2.6.8",
+          "EAReferenceID": "EA4225358",
+          "Description": "Snowflake Core is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.016108574345707893,
+          "@search.reranker_score": 0.881295382976532,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Snowflake Core is used to deliver scalable, reliable capabilities for enterprise workloads. Tool: Snowflake Core                 Capability: Content Services                 Sub-capability: Backup & DR                 Manufacturer: MongoDB                 TEB Status: Under Review                 Description: Snowflake Core is used to deliver.",
+              "highlights": "<em>Snowflake Core </em>is used to deliver<em> scalable, reliable capabilities </em>for<em> enterprise workloads.</em> Tool: Snowflake Core                 Capability:<em> Content Services                 Sub-capability: </em>Backup & DR                 Manufacturer:<em> MongoDB </em>                TEB Status: Under Review                 Description: Snowflake Core is used to deliver."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Slack",
+          "StandardsComments": "Hybrid retrieval and strict filtering supported.",
+          "MetaTagsDescription": "Agent Assist: scope or capability related to agent assist. Cache: scope or capability related to cache. BM25: scope or capability related to bm25. Vector Search: scope or capability related to vector search. Microservices: scope or capability related to microservices. CI/CD: scope or capability related to ci/cd.",
+          "Manufacturer": "ServiceNow",
+          "SubCapability": "Key Management",
+          "EANotes": "Hybrid retrieval and strict filtering supported.",
+          "Capabilities": "Storage",
+          "TEBStatus": "TEB Not Approved",
+          "StandardCategory": "Provisional Standard",
+          "MetaTags": "Agent Assist, Cache, BM25, Vector Search, Microservices, CI/CD",
+          "CapabilityManager": "Alex Garcia",
+          "Version": "3.7.2",
+          "EAReferenceID": "EA1043289",
+          "Description": "Slack is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.019312169402837753,
+          "@search.reranker_score": 0.879877507686615,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Slack is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Tool: Slack                 Capability: Storage                 Sub-capability: Key Management                 Manufacturer: ServiceNow                 TEB Status: TEB Not.",
+              "highlights": "<em>Slack </em>is used to<em> deliver scalable, reliable capabilities for enterprise workloads.</em> It integrates with identity, networking, and observability services for end‑to‑end governance. Tool:<em> Slack </em>                Capability:<em> Storage                 Sub-capability: </em>Key Management                 Manufacturer: ServiceNow                 TEB Status: TEB Not."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Kong Gateway",
+          "StandardsComments": "Vendor support SLA reviewed by procurement.",
+          "MetaTagsDescription": "Customer Experience: scope or capability related to customer experience. Cache: scope or capability related to cache. Contact Center: scope or capability related to contact center. Agent Assist: scope or capability related to agent assist. UC Platform: scope or capability related to uc platform. Disaster Recovery: scope or capability related to disaster recovery.",
+          "Manufacturer": "Databricks",
+          "SubCapability": "ETL/ELT",
+          "EANotes": "Vendor support SLA reviewed by procurement.",
+          "Capabilities": "Analytics",
+          "TEBStatus": "Deprecated",
+          "StandardCategory": "Legacy",
+          "MetaTags": "Customer Experience, Cache, Contact Center, Agent Assist, UC Platform, Disaster Recovery",
+          "CapabilityManager": "Taylor White",
+          "Version": "3.2.3",
+          "EAReferenceID": "EA6965328",
+          "Description": "Kong Gateway is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.019375573843717575,
+          "@search.reranker_score": 0.8550646305084229,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Kong Gateway is used to deliver scalable, reliable capabilities for enterprise workloads. Tool: Kong Gateway                 Capability: Analytics                 Sub-capability: ETL/ELT                 Manufacturer: Databricks                 TEB Status: Deprecated                 Description: Kong Gateway is used to deliver scalable, reliable.",
+              "highlights": "<em>Kong Gateway </em>is used to<em> deliver scalable, reliable capabilities for enterprise workloads.</em> Tool: Kong<em> Gateway </em>                Capability:<em> Analytics                 Sub-capability: </em>ETL/ELT                 Manufacturer: Databricks                 TEB Status: Deprecated                 Description: Kong<em> Gateway </em>is used to deliver scalable, reliable."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Prometheus",
+          "StandardsComments": "Approved as a standard for enterprise use.",
+          "MetaTagsDescription": "AI Experience Platform: scope or capability related to ai experience platform. Cost Management: scope or capability related to cost management. Semantic Ranker: scope or capability related to semantic ranker. Automation: scope or capability related to automation. BM25: scope or capability related to bm25. Observability: scope or capability related to observability.",
+          "Manufacturer": "Cisco",
+          "SubCapability": "Feature Store",
+          "EANotes": "Provisional until further risk assessment is complete.",
+          "Capabilities": "Analytics",
+          "TEBStatus": "TEB Approved",
+          "StandardCategory": "Product Standard",
+          "MetaTags": "AI Experience Platform, Cost Management, Semantic Ranker, Automation, BM25, Observability",
+          "CapabilityManager": "Shawn Jackson",
+          "Version": "1.0.8",
+          "EAReferenceID": "EA6773602",
+          "Description": "Prometheus is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.01734970696270466,
+          "@search.reranker_score": 0.8451395034790039,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Prometheus is used to deliver scalable, reliable capabilities for enterprise workloads. Tool: Prometheus                 Capability: Analytics                 Sub-capability: Feature Store                 Manufacturer: Cisco                 TEB Status: TEB Approved                 Description: Prometheus is used to deliver scalable, reliable.",
+              "highlights": "<em>Prometheus </em>is used to deliver<em> scalable, </em>reliable capabilities for enterprise workloads. Tool: Prometheus                 Capability: Analytics<em>                 Sub-capability: </em>Feature Store                 Manufacturer: Cisco                 TEB Status: TEB Approved                 Description: Prometheus is used to deliver scalable, reliable."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Pinecone",
+          "StandardsComments": "Pilot completed with positive feedback from stakeholders.",
+          "MetaTagsDescription": "DevOps: scope or capability related to devops. AI Experience Platform: scope or capability related to ai experience platform. Edge: scope or capability related to edge.",
+          "Manufacturer": "HashiCorp",
+          "SubCapability": "Queueing",
+          "EANotes": "Enable logging and tag resources for cost allocation.",
+          "Capabilities": "Identity & Access Mgmt",
+          "TEBStatus": "TEB Not Approved",
+          "StandardCategory": "Product Standard",
+          "MetaTags": "DevOps, AI Experience Platform, Edge",
+          "CapabilityManager": "Jamie Nguyen",
+          "Version": "4.2.0",
+          "EAReferenceID": "EA7556464",
+          "Description": "Pinecone is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.02109002135694027,
+          "@search.reranker_score": 0.8387590646743774,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Pinecone is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to... Tool: Pinecone                 Capability: Identity & Access Mgmt                 Sub-capability: Queueing                 Manufacturer: HashiCorp                 TEB Status: TEB.",
+              "highlights": "<em>Pinecone </em>is<em> used </em>to<em> deliver scalable, reliable capabilities for enterprise workloads.</em> It integrates with identity, networking, and observability services for end‑to... Tool:<em> Pinecone </em>                Capability:<em> Identity & Access Mgmt                 Sub-capability: Queueing </em>                Manufacturer: HashiCorp                 TEB Status: TEB."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Redis Enterprise",
+          "StandardsComments": "Enable logging and tag resources for cost allocation.",
+          "MetaTagsDescription": "Automation: scope or capability related to automation. Agent Assist: scope or capability related to agent assist. PII: scope or capability related to pii. BM25: scope or capability related to bm25. Cost Management: scope or capability related to cost management.",
+          "Manufacturer": "NVIDIA",
+          "SubCapability": "Routing",
+          "EANotes": "Provisional until further risk assessment is complete.",
+          "Capabilities": "Analytics",
+          "TEBStatus": "TEB Not Approved",
+          "StandardCategory": "Product Standard",
+          "MetaTags": "Automation, Agent Assist, PII, BM25, Cost Management",
+          "CapabilityManager": "Casey Martinez",
+          "Version": "3.9.3",
+          "EAReferenceID": "EA2421024",
+          "Description": "Redis Enterprise is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.020840046927332878,
+          "@search.reranker_score": 0.819617748260498,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Redis Enterprise is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services f... Tool: Redis Enterprise                 Capability: Analytics                 Sub-capability: Routing                 Manufacturer: NVIDIA                 TEB Status: TEB Not Approved.",
+              "highlights": "<em>Redis Enterprise </em>is used to<em> deliver scalable, reliable capabilities for enterprise workloads.</em> It integrates with identity, networking, and observability services f... Tool:<em> Redis </em>Enterprise                 Capability: Analytics<em>                 Sub-capability: </em>Routing                 Manufacturer: NVIDIA                 TEB Status: TEB Not Approved."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Kong Gateway",
+          "StandardsComments": "Requires private endpoint and managed identity configuration.",
+          "MetaTagsDescription": "DevOps: scope or capability related to devops. CI/CD: scope or capability related to ci/cd. AI Experience Platform: scope or capability related to ai experience platform. LLM Orchestration: scope or capability related to llm orchestration. RAG: scope or capability related to rag.",
+          "Manufacturer": "Redis Labs",
+          "SubCapability": "Patch Mgmt",
+          "EANotes": "Deprecated for new deployments; maintain only.",
+          "Capabilities": "Analytics",
+          "TEBStatus": "Deprecated",
+          "StandardCategory": "Legacy",
+          "MetaTags": "DevOps, CI/CD, AI Experience Platform, LLM Orchestration, RAG",
+          "CapabilityManager": "Avery Patel",
+          "Version": "2.5.9",
+          "EAReferenceID": "EA4958887",
+          "Description": "Kong Gateway is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.0162366833537817,
+          "@search.reranker_score": 0.8139462471008301,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Kong Gateway is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end ... Tool: Kong Gateway                 Capability: Analytics                 Sub-capability: Patch Mgmt                 Manufacturer: Redis Labs                 TEB Status:.",
+              "highlights": "<em>Kong Gateway </em>is used to<em> deliver scalable, reliable capabilities </em>for<em> enterprise workloads.</em> It integrates with identity, networking, and observability services for end‑to‑end ... Tool: Kong Gateway                 Capability:<em> Analytics                 Sub-capability: Patch </em>Mgmt                 Manufacturer: Redis Labs                 TEB Status:."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Elastic Observability",
+          "StandardsComments": "Document architecture in the catalog and link runbooks.",
+          "MetaTagsDescription": "Cache: scope or capability related to cache. Analytics: scope or capability related to analytics. Semantic Ranker: scope or capability related to semantic ranker.",
+          "Manufacturer": "Databricks",
+          "SubCapability": "ETL/ELT",
+          "EANotes": "Deprecated for new deployments; maintain only.",
+          "Capabilities": "Networking",
+          "TEBStatus": "Under Review",
+          "StandardCategory": "Provisional Standard",
+          "MetaTags": "Cache, Analytics, Semantic Ranker",
+          "CapabilityManager": "Morgan Lewis",
+          "Version": "4.2.3",
+          "EAReferenceID": "EA7581814",
+          "Description": "Elastic Observability is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.017605382949113846,
+          "@search.reranker_score": 0.8089836835861206,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Elastic Observability is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governanceTool: Elastic Observability                 Capability: Networking                 Sub-capability: ETL/ELT                 Manufacturer: Databricks          .",
+              "highlights": "<em>Elastic Observability </em>is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governanceTool: Elastic Observability                 Capability:<em> Networking </em>                Sub-capability: ETL/ELT                 Manufacturer: Databricks          ."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Prometheus",
+          "StandardsComments": "Approved as a standard for enterprise use.",
+          "MetaTagsDescription": "Analytics: scope or capability related to analytics. Customer Experience: scope or capability related to customer experience. Backup: scope or capability related to backup. Cost Management: scope or capability related to cost management.",
+          "Manufacturer": "Amazon",
+          "SubCapability": "Observability",
+          "EANotes": "Requires private endpoint and managed identity configuration.",
+          "Capabilities": "Databases",
+          "TEBStatus": "TEB Approved",
+          "StandardCategory": "Reference Standard",
+          "MetaTags": "Analytics, Customer Experience, Backup, Cost Management",
+          "CapabilityManager": "Cameron Thomas",
+          "Version": "2.4.0",
+          "EAReferenceID": "EA5562386",
+          "Description": "Prometheus is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.020128823816776276,
+          "@search.reranker_score": 0.7685741782188416,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Prometheus is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance inclu... Tool: Prometheus                 Capability: Databases                 Sub-capability: Observability                 Manufacturer: Amazon                 TEB Status: TEB Approved                 Description: Prometheus is used to.",
+              "highlights": "<em>Prometheus </em>is<em> used </em>to<em> deliver scalable, reliable capabilities for enterprise workloads.</em> Operational guidance inclu... Tool:<em> Prometheus </em>                Capability:<em> Databases                 Sub-capability: </em>Observability<em>                 Manufacturer: Amazon                 TEB </em>Status: TEB Approved                 Description:<em> Prometheus </em>is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Kafka",
+          "StandardsComments": "Meets security baselines and compliance requirements.",
+          "MetaTagsDescription": "PII: scope or capability related to pii. Cost Management: scope or capability related to cost management. DevOps: scope or capability related to devops. Vector Search: scope or capability related to vector search.",
+          "Manufacturer": "Microsoft",
+          "SubCapability": "SaaS Integration",
+          "EANotes": "Deprecated for new deployments; maintain only.",
+          "Capabilities": "Identity & Access Mgmt",
+          "TEBStatus": "Provisional Standard",
+          "StandardCategory": "Provisional Standard",
+          "MetaTags": "PII, Cost Management, DevOps, Vector Search",
+          "CapabilityManager": "Taylor Thomas",
+          "Version": "2.4.3",
+          "EAReferenceID": "EA3791769",
+          "Description": "Kafka is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.02580752596259117,
+          "@search.reranker_score": 0.7579401135444641,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Kafka is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for en... Tool: Kafka                 Capability: Identity & Access Mgmt                 Sub-capability: SaaS Integration                 Manufacturer: Microsoft                 TEB Status:.",
+              "highlights": "<em>Kafka </em>is used to deliver<em> scalable, </em>reliable capabilities for enterprise<em> workloads.</em> It integrates with identity, networking, and observability services for en... Tool:<em> Kafka </em>                Capability: Identity & Access Mgmt<em>                 Sub-capability: </em>SaaS Integration                 Manufacturer: Microsoft                 TEB Status:."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Jenkins",
+          "StandardsComments": "Vendor support SLA reviewed by procurement.",
+          "MetaTagsDescription": "Automation: scope or capability related to automation. Serverless: scope or capability related to serverless. Agent Assist: scope or capability related to agent assist. Vector Search: scope or capability related to vector search. Customer Experience: scope or capability related to customer experience.",
+          "Manufacturer": "Databricks",
+          "SubCapability": "Routing",
+          "EANotes": "Deprecated for new deployments; maintain only.",
+          "Capabilities": "Analytics",
+          "TEBStatus": "Under Review",
+          "StandardCategory": "Legacy",
+          "MetaTags": "Automation, Serverless, Agent Assist, Vector Search, Customer Experience",
+          "CapabilityManager": "Drew Nguyen",
+          "Version": "2.2.7",
+          "EAReferenceID": "EA9638346",
+          "Description": "Jenkins is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.021136945113539696,
+          "@search.reranker_score": 0.7522686123847961,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Jenkins is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, a... Tool: Jenkins                 Capability: Analytics                 Sub-capability: Routing                 Manufacturer: Databricks                 TEB Status: Under Review                 Description: Jenkins is used.",
+              "highlights": "<em>Jenkins is used to deliver scalable, reliable capabilities for enterprise workloads.</em> It integrates with identity, networking, a... Tool:<em> Jenkins </em>                Capability:<em> Analytics                 Sub-capability: Routing                 Manufacturer: </em>Databricks                 TEB Status: Under Review                 Description:<em> Jenkins </em>is used."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Kafka",
+          "StandardsComments": "Deprecated for new deployments; maintain only.",
+          "MetaTagsDescription": "CI/CD: scope or capability related to ci/cd. AI Experience Platform: scope or capability related to ai experience platform. Edge: scope or capability related to edge. Data Engineering: scope or capability related to data engineering. Cloud Communications: scope or capability related to cloud communications.",
+          "Manufacturer": "Elastic",
+          "SubCapability": "Edge CDN",
+          "EANotes": "Vendor support SLA reviewed by procurement.",
+          "Capabilities": "Security",
+          "TEBStatus": "Deprecated",
+          "StandardCategory": "Internal Only",
+          "MetaTags": "CI/CD, AI Experience Platform, Edge, Data Engineering, Cloud Communications",
+          "CapabilityManager": "Jordan Nguyen",
+          "Version": "4.0.7",
+          "EAReferenceID": "EA9087406",
+          "Description": "Kafka is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.02325870655477047,
+          "@search.reranker_score": 0.7352541089057922,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Kafka is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observabi... Tool: Kafka                 Capability: Security                 Sub-capability: Edge CDN                 Manufacturer: Elastic                 TEB Status: Deprecated                 Description: Kafka is.",
+              "highlights": "<em>Kafka </em>is used to deliver<em> scalable, </em>reliable capabilities for enterprise<em> workloads.</em> It integrates with identity, networking, and observabi... Tool:<em> Kafka </em>                Capability:<em> Security                 Sub-capability: Edge CDN </em>                Manufacturer: Elastic                 TEB Status: Deprecated                 Description: Kafka is."
+            }
+          ]
+        },
+        {
+          "NameofTools": "CloudFront",
+          "StandardsComments": "Requires private endpoint and managed identity configuration.",
+          "MetaTagsDescription": "Disaster Recovery: scope or capability related to disaster recovery. Compliance: scope or capability related to compliance. Observability: scope or capability related to observability.",
+          "Manufacturer": "Redis Labs",
+          "SubCapability": "SaaS Integration",
+          "EANotes": "Pilot completed with positive feedback from stakeholders.",
+          "Capabilities": "Networking",
+          "TEBStatus": "TEB Not Approved",
+          "StandardCategory": "Product Standard",
+          "MetaTags": "Disaster Recovery, Compliance, Observability",
+          "CapabilityManager": "Jamie Brown",
+          "Version": "1.9.2",
+          "EAReferenceID": "EA9148652",
+          "Description": "CloudFront is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.01651126705110073,
+          "@search.reranker_score": 0.6785390377044678,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "CloudFront is used to deliver scalable, reliable capabilities for enterprise workloads. Operational gu... Tool: CloudFront                 Capability: Networking                 Sub-capability: SaaS Integration                 Manufacturer: Redis Labs                 TEB Status: TEB Not Approved                 Description: CloudFront is used to.",
+              "highlights": "<em>CloudFront </em>is used to<em> deliver scalable, reliable capabilities for enterprise workloads.</em> Operational gu... Tool:<em> CloudFront </em>                Capability:<em> Networking                 Sub-capability: SaaS </em>Integration<em>                 Manufacturer: Redis </em>Labs                 TEB Status: TEB Not Approved                 Description:<em> CloudFront </em>is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "EKS",
+          "StandardsComments": "Pilot completed with positive feedback from stakeholders.",
+          "MetaTagsDescription": "UC Platform: scope or capability related to uc platform. Microservices: scope or capability related to microservices. Networking: scope or capability related to networking. LLM Orchestration: scope or capability related to llm orchestration.",
+          "Manufacturer": "Amazon",
+          "SubCapability": "SaaS Integration",
+          "EANotes": "Hybrid retrieval and strict filtering supported.",
+          "Capabilities": "Security",
+          "TEBStatus": "Provisional Standard",
+          "StandardCategory": "Legacy",
+          "MetaTags": "UC Platform, Microservices, Networking, LLM Orchestration",
+          "CapabilityManager": "Jamie Martinez",
+          "Version": "2.1.0",
+          "EAReferenceID": "EA5214562",
+          "Description": "EKS is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.017892803996801376,
+          "@search.reranker_score": 0.6246597170829773,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "EKS is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Tool: EKS                 Capability: Security                 Sub-capability: SaaS Integration                 Manufacturer: Amazon                 TEB Status: Provisional.",
+              "highlights": "<em>EKS </em>is<em> used </em>to<em> deliver scalable, reliable capabilities for enterprise workloads.</em> It integrates with identity, networking, and observability services for end‑to‑end governance. Tool:<em> EKS </em>                Capability:<em> Security                 Sub-capability: SaaS Integration                 Manufacturer: Amazon                 TEB </em>Status: Provisional."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Service Bus",
+          "StandardsComments": "Requires private endpoint and managed identity configuration.",
+          "MetaTagsDescription": "Compliance: scope or capability related to compliance. DevOps: scope or capability related to devops. Vector Search: scope or capability related to vector search. Agent Assist: scope or capability related to agent assist.",
+          "Manufacturer": "Amazon",
+          "SubCapability": "Key Management",
+          "EANotes": "Enable logging and tag resources for cost allocation.",
+          "Capabilities": "Storage",
+          "TEBStatus": "Under Review",
+          "StandardCategory": "Reference Standard",
+          "MetaTags": "Compliance, DevOps, Vector Search, Agent Assist",
+          "CapabilityManager": "Drew Harris",
+          "Version": "3.1.6",
+          "EAReferenceID": "EA9451983",
+          "Description": "Service Bus is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.016910172998905182,
+          "@search.reranker_score": 0.6161524653434753,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Service Bus is used to deliver scalable, reliable capabilities for enterprise workloads. Operational guidance inc... Tool: Service Bus                 Capability: Storage                 Sub-capability: Key Management                 Manufacturer: Amazon                 TEB Status: Under Review                 Description: Service Bus is used to.",
+              "highlights": "<em>Service Bus </em>is used to deliver<em> scalable, </em>reliable capabilities for enterprise<em> workloads.</em> Operational guidance inc... Tool: Service Bus                 Capability:<em> Storage                 Sub-capability: </em>Key Management<em>                 Manufacturer: Amazon                 TEB </em>Status: Under Review                 Description: Service Bus is used to."
+            }
+          ]
+        },
+        {
+          "NameofTools": "Synapse",
+          "StandardsComments": "Approved as a standard for enterprise use.",
+          "MetaTagsDescription": "Edge: scope or capability related to edge. Cloud Communications: scope or capability related to cloud communications. DevOps: scope or capability related to devops. Vector Search: scope or capability related to vector search.",
+          "Manufacturer": "Google",
+          "SubCapability": "Backup & DR",
+          "EANotes": "Meets security baselines and compliance requirements.",
+          "Capabilities": "Monitoring",
+          "TEBStatus": "TEB Not Approved",
+          "StandardCategory": "Provisional Standard",
+          "MetaTags": "Edge, Cloud Communications, DevOps, Vector Search",
+          "CapabilityManager": "Kendall Wilson",
+          "Version": "2.0.1",
+          "EAReferenceID": "EA5183473",
+          "Description": "Synapse is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Standard deployment patterns include IaC templates, private networking, and workload identities. Security hardening follows CIS benchmarks and zero‑trust principles where applicable. Operational guidance includes backup, monitoring, alerting, and cost optimization practices.",
+          "@search.score": 0.02039184235036373,
+          "@search.reranker_score": 0.6076452136039734,
+          "@search.highlights": null,
+          "@search.captions": [
+            {
+              "additional_properties": null,
+              "text": "Synapse is used to deliver scalable, reliable capabilities for enterprise workloads. It integrates with identity, networking, and observability services for end‑to‑end governance. Tool: Synapse                 Capability: Monitoring                 Sub-capability: Backup & DR                 Manufacturer: Google                 TEB Status: TEB Not.",
+              "highlights": "<em>Synapse </em>is used to deliver<em> scalable, </em>reliable capabilities for<em> enterprise workloads.</em> It integrates with identity, networking, and observability services for end‑to‑end governance. Tool: Synapse                 Capability:<em> Monitoring                 Sub-capability: </em>Backup & DR                 Manufacturer:<em> Google </em>                TEB Status: TEB Not."
+            }
+          ]
+        }
+      ],
+      "metadata": {
+        "search_query": "pub sub publish subscribe publish/subscribe pubsub messaging event streaming",
+        "filters": "",
+        "intent": "List pub/sub",
+        "documents_retrieved": 100
+      }
+    }
+  },
+  "status": 200,
+  "message": "Query processed successfully"
+}

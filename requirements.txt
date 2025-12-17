@@ -2,11 +2,11 @@
 azure-search-documents==11.4.0
 
 # Azure OpenAI for embeddings
-openai==1.12.0
+openai==1.30.0
 
 # Data processing
 pandas==2.1.4
-numpy==1.24.3
+numpy==1.26.4
 
 # Utilities
 # Note: uuid, json, typing, logging, and os are built-in Python modules
@@ -65,7 +65,16 @@ typing-inspection==0.4.2
 typing_extensions==4.15.0
 urllib3==2.5.0
 uvicorn==0.37.0
-uvloop==0.21.0
+uvloop==0.21.0; sys_platform != "win32"
 watchfiles==1.1.0
 websockets==15.0.1
 yarl==1.22.0
+
+# Document processing (cross-platform)
+python-pptx==0.6.23
+python-docx==1.1.0
+pypdf==4.0.1
+pdf2image==1.16.3
+
+# rate-limiter
+redis
