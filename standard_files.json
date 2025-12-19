@@ -1,17 +1,17 @@
 {
-  "assistant_id": "asst_OQQ6tM3xzeUZk3Ex3DkjjV5W",
+  "assistant_id": "asst_sUtzQX1CRbWXPTfRux3uLijg",
   "files": [
-    "assistant-PNmbqsSsz3qWghdf73bg95",
-    "assistant-C4issNqhNiZXFT49J9Uihv",
-    "assistant-WZNzCXSJu5JtfcmusVrozS",
-    "assistant-GtJ5W2xNSMVZmRr3FgaoJY"
+    "assistant-4cbs3pCDYNGQkztdMUUKvi",
+    "assistant-5Zu2fV5wg3aVGztB4XKuC7",
+    "assistant-QVMT48geKVC3wckEwVhvK6",
+    "assistant-Xijf6CtTiLaA6ACpn2Nw3a"
   ],
   "file_mapping": {
-    "Experian-Cloud-Principles.pdf": "assistant-PNmbqsSsz3qWghdf73bg95",
-    "Experian-General-Knowledge.pdf": "assistant-C4issNqhNiZXFT49J9Uihv",
-    "EA-Assessment-Category.pdf": "assistant-WZNzCXSJu5JtfcmusVrozS",
-    "Experian-EA-Principles.pdf": "assistant-GtJ5W2xNSMVZmRr3FgaoJY"
+    "Experian-Cloud-Principles.pdf": "assistant-4cbs3pCDYNGQkztdMUUKvi",
+    "Experian-General-Knowledge.pdf": "assistant-5Zu2fV5wg3aVGztB4XKuC7",
+    "EA-Assessment-Category.pdf": "assistant-QVMT48geKVC3wckEwVhvK6",
+    "Experian-EA-Principles.pdf": "assistant-Xijf6CtTiLaA6ACpn2Nw3a"
   },
   "model": "gpt-5-mini",
-  "created_at": "Wed Dec 17 12:36:14 IST 2025"
+  "created_at": "2025-12-19T10:08:51.438884"
 }

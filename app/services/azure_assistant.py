@@ -222,6 +222,10 @@ class AzureAssistantClient:
         Create a new thread with an initial user message, optional image attachments,
         and optional standard files for file_search.
         
+        Azure OpenAI has a limit of 10 content items per message. If there are more
+        than 9 images, the images are split across multiple messages (first message
+        gets text + up to 9 images, subsequent messages get up to 10 images each).
+        
         Args:
             user_prompt: The user's prompt/question
             image_file_ids: List of file IDs for image attachments (for vision)
@@ -230,24 +234,12 @@ class AzureAssistantClient:
         Returns:
             The thread ID
         """
+        # Azure OpenAI limits content array to 10 items per message
+        MAX_CONTENT_ITEMS = 10
+        # First message has text, so can only fit 9 images
+        MAX_IMAGES_FIRST_MESSAGE = MAX_CONTENT_ITEMS - 1
+        
         try:
-            # Build message content
-            content = []
-            
-            # Add text content
-            content.append({
-                "type": "text",
-                "text": user_prompt
-            })
-            
-            # Add image attachments if provided (for vision capability)
-            if image_file_ids:
-                for file_id in image_file_ids:
-                    content.append({
-                        "type": "image_file",
-                        "image_file": {"file_id": file_id}
-                    })
-            
             # Build attachments for file_search (standard documents)
             attachments = []
             if standard_file_ids:
@@ -258,7 +250,31 @@ class AzureAssistantClient:
                     })
                 logger.info(f"Attaching {len(standard_file_ids)} standard files for file_search")
             
-            # Create the message
+            # Batch images if we have more than can fit in one message
+            # All batches limited to 9 images since each includes a text element
+            image_batches = []
+            if image_file_ids:
+                for i in range(0, len(image_file_ids), MAX_IMAGES_FIRST_MESSAGE):
+                    image_batches.append(image_file_ids[i:i + MAX_IMAGES_FIRST_MESSAGE])
+                
+                logger.info(f"Split {len(image_file_ids)} images into {len(image_batches)} batches")
+            
+            # Build first message content (text + first batch of images)
+            content = []
+            content.append({
+                "type": "text",
+                "text": user_prompt
+            })
+            
+            # Add first batch of images if available
+            if image_batches:
+                for file_id in image_batches[0]:
+                    content.append({
+                        "type": "image_file",
+                        "image_file": {"file_id": file_id}
+                    })
+            
+            # Create the first message
             message_params = {
                 "role": "user",
                 "content": content
@@ -268,10 +284,33 @@ class AzureAssistantClient:
             if attachments:
                 message_params["attachments"] = attachments
             
+            # Create thread with first message
             thread = self.client.beta.threads.create(
                 messages=[message_params]
             )
             logger.info(f"Created thread with ID: {thread.id}")
+            
+            # Add remaining image batches as separate messages
+            if len(image_batches) > 1:
+                for batch_idx, batch in enumerate(image_batches[1:], start=2):
+                    batch_content = []
+                    batch_content.append({
+                        "type": "text",
+                        "text": f"[Continued: Images batch {batch_idx} of {len(image_batches)}]"
+                    })
+                    for file_id in batch:
+                        batch_content.append({
+                            "type": "image_file",
+                            "image_file": {"file_id": file_id}
+                        })
+                    
+                    self.client.beta.threads.messages.create(
+                        thread_id=thread.id,
+                        role="user",
+                        content=batch_content
+                    )
+                    logger.info(f"Added image batch {batch_idx}/{len(image_batches)} to thread")
+            
             return thread.id
         except Exception as e:
             logger.error(f"Failed to create thread: {e}")
@@ -287,30 +326,21 @@ class AzureAssistantClient:
         """
         Add a new user message to an existing thread for conversation continuity.
         
+        Azure OpenAI has a limit of 10 content items per message. If there are more
+        than 9 images, the images are split across multiple messages.
+        
         Args:
             thread_id: The existing thread ID to add the message to
             user_prompt: The user's prompt/question
             image_file_ids: List of file IDs for image attachments (for vision)
             standard_file_ids: List of file IDs for standard docs (for file_search)
         """
+        # Azure OpenAI limits content array to 10 items per message
+        MAX_CONTENT_ITEMS = 10
+        # First message has text, so can only fit 9 images
+        MAX_IMAGES_FIRST_MESSAGE = MAX_CONTENT_ITEMS - 1
+        
         try:
-            # Build message content
-            content = []
-            
-            # Add text content
-            content.append({
-                "type": "text",
-                "text": user_prompt
-            })
-            
-            # Add image attachments if provided (for vision capability)
-            if image_file_ids:
-                for file_id in image_file_ids:
-                    content.append({
-                        "type": "image_file",
-                        "image_file": {"file_id": file_id}
-                    })
-            
             # Build attachments for file_search (standard documents)
             attachments = []
             if standard_file_ids:
@@ -321,7 +351,31 @@ class AzureAssistantClient:
                     })
                 logger.info(f"Attaching {len(standard_file_ids)} standard files for file_search")
             
-            # Create the message params
+            # Batch images if we have more than can fit in one message
+            # All batches limited to 9 images since each includes a text element
+            image_batches = []
+            if image_file_ids:
+                for i in range(0, len(image_file_ids), MAX_IMAGES_FIRST_MESSAGE):
+                    image_batches.append(image_file_ids[i:i + MAX_IMAGES_FIRST_MESSAGE])
+                
+                logger.info(f"Split {len(image_file_ids)} images into {len(image_batches)} batches")
+            
+            # Build first message content (text + first batch of images)
+            content = []
+            content.append({
+                "type": "text",
+                "text": user_prompt
+            })
+            
+            # Add first batch of images if available
+            if image_batches:
+                for file_id in image_batches[0]:
+                    content.append({
+                        "type": "image_file",
+                        "image_file": {"file_id": file_id}
+                    })
+            
+            # Create the first message params
             message_params = {
                 "role": "user",
                 "content": content
@@ -331,12 +385,33 @@ class AzureAssistantClient:
             if attachments:
                 message_params["attachments"] = attachments
             
-            # Add message to existing thread
+            # Add first message to thread
             self.client.beta.threads.messages.create(
                 thread_id=thread_id,
                 **message_params
             )
             logger.info(f"Added message to existing thread: {thread_id}")
+            
+            # Add remaining image batches as separate messages
+            if len(image_batches) > 1:
+                for batch_idx, batch in enumerate(image_batches[1:], start=2):
+                    batch_content = []
+                    batch_content.append({
+                        "type": "text",
+                        "text": f"[Continued: Images batch {batch_idx} of {len(image_batches)}]"
+                    })
+                    for file_id in batch:
+                        batch_content.append({
+                            "type": "image_file",
+                            "image_file": {"file_id": file_id}
+                        })
+                    
+                    self.client.beta.threads.messages.create(
+                        thread_id=thread_id,
+                        role="user",
+                        content=batch_content
+                    )
+                    logger.info(f"Added image batch {batch_idx}/{len(image_batches)} to thread")
             
         except Exception as e:
             logger.error(f"Failed to add message to thread {thread_id}: {e}")
