@@ -131,6 +131,7 @@ Tone & Format Requirements
 * Use headings, bullet points, tables to structure content.
 * Maintain a professional but concise tone.
 * Reference external best-practice frameworks as relevant.
+* Always return the assessment in markdown format for easy reading and sharing.
 """
 
 
