@@ -8,6 +8,7 @@ images (Vision capability).
 """
 
 import os
+import re
 import json
 import time
 import asyncio
@@ -86,30 +87,128 @@ o List any insufficient data that impacts an accurate assessment.
 Evaluate the project against these categories in detail and provide score and verbose evaluations, noting any insufficient data:
 o Alignment with Experian EA/Cloud Principles
 o Product Comparison (evaluation metrics, considered solutions)
-? Score lower if no evaluation metrics is provided for selecting the tools or approach.
+  - Score lower if no evaluation metrics is provided for selecting the tools or approach.
 o Security & Compliance (data protection, access control, encryption, etc)
-? Score lower if there are no integrations with Experian SSO/Okta or other security stacks and approved tools.
+  - Score lower if there are no integrations with Experian SSO/Okta or other security stacks and approved tools.
 o Maintainability & Operability (support, interoperability, automation, etc)
-? Score accordingly based on the tools or services or products information provided.
+  - Score accordingly based on the tools or services or products information provided.
 o Overall Design (scalability, resiliency, availability, performance, diagrams, etc)
-? Score lower if diagrams are NOT provided or if details are not provided as to how the services are being deployed.
+  - Score lower if diagrams are NOT provided or if details are not provided as to how the services are being deployed.
 o Interfaces/Integrations (external/internal information)
 o Portability (deployable to other environments)
 o Observability (logging, monitoring, reporting, etc)
-? Score higher if using Experian-approved tools or services for observability.
+  - Score higher if using Experian-approved tools or services for observability.
 o Risks (security, compliance, technical)
-? Score lower if lacking information.
+  - Score lower if lacking information.
 o Overall Project Assessment (completeness of data and alignments)
-? Provide information on how this aligns with the industry standards
-5. Output format in a table format | Category | Score (0-5) | Detailed Evaluations and Justifications |
-o Scoring Guide:
-? 0 = No data provided
-? 1-2 = Some data, but insufficient
-? 3-4 = Mostly aligns with Experian and industry best practices.
-? 5 = Fully meets standards/best practices
-o Score higher when using approved Experian tools or frameworks.
-o Always use the same scoring logic for fairness and consistency.
-o Show the average project score at the end of the table.
+  - Provide information on how this aligns with the industry standards
+
+5. Scoring Output Format
+IMPORTANT: Output the assessment scores in the following structured JSON block wrapped in markers for frontend parsing:
+
+```assessment_scores
+{
+  "categories": [
+    {
+      "name": "EA/Cloud Principles Alignment",
+      "score": <0-5>,
+      "max_score": 5,
+      "status": "<critical|warning|good|excellent>",
+      "summary": "<one-line summary>",
+      "details": "<detailed evaluation and justification>"
+    },
+    {
+      "name": "Product Comparison",
+      "score": <0-5>,
+      "max_score": 5,
+      "status": "<critical|warning|good|excellent>",
+      "summary": "<one-line summary>",
+      "details": "<detailed evaluation and justification>"
+    },
+    {
+      "name": "Security & Compliance",
+      "score": <0-5>,
+      "max_score": 5,
+      "status": "<critical|warning|good|excellent>",
+      "summary": "<one-line summary>",
+      "details": "<detailed evaluation and justification>"
+    },
+    {
+      "name": "Maintainability & Operability",
+      "score": <0-5>,
+      "max_score": 5,
+      "status": "<critical|warning|good|excellent>",
+      "summary": "<one-line summary>",
+      "details": "<detailed evaluation and justification>"
+    },
+    {
+      "name": "Overall Design",
+      "score": <0-5>,
+      "max_score": 5,
+      "status": "<critical|warning|good|excellent>",
+      "summary": "<one-line summary>",
+      "details": "<detailed evaluation and justification>"
+    },
+    {
+      "name": "Interfaces & Integrations",
+      "score": <0-5>,
+      "max_score": 5,
+      "status": "<critical|warning|good|excellent>",
+      "summary": "<one-line summary>",
+      "details": "<detailed evaluation and justification>"
+    },
+    {
+      "name": "Portability",
+      "score": <0-5>,
+      "max_score": 5,
+      "status": "<critical|warning|good|excellent>",
+      "summary": "<one-line summary>",
+      "details": "<detailed evaluation and justification>"
+    },
+    {
+      "name": "Observability",
+      "score": <0-5>,
+      "max_score": 5,
+      "status": "<critical|warning|good|excellent>",
+      "summary": "<one-line summary>",
+      "details": "<detailed evaluation and justification>"
+    },
+    {
+      "name": "Risks",
+      "score": <0-5>,
+      "max_score": 5,
+      "status": "<critical|warning|good|excellent>",
+      "summary": "<one-line summary>",
+      "details": "<detailed evaluation and justification>"
+    },
+    {
+      "name": "Overall Project Assessment",
+      "score": <0-5>,
+      "max_score": 5,
+      "status": "<critical|warning|good|excellent>",
+      "summary": "<one-line summary>",
+      "details": "<detailed evaluation and justification>"
+    }
+  ],
+  "average_score": <calculated average to 1 decimal>,
+  "total_categories": 10,
+  "assessment_date": "<current date in YYYY-MM-DD format>"
+}
+```
+
+Status mapping rules:
+- 0: "critical" (No data)
+- 1-2: "warning" (Insufficient data)
+- 3-4: "good" (Mostly aligned)
+- 5: "excellent" (Fully meets standards)
+
+Scoring Guide:
+o 0 = No data provided
+o 1-2 = Some data, but insufficient
+o 3-4 = Mostly aligns with Experian and industry best practices
+o 5 = Fully meets standards/best practices
+o Score higher when using approved Experian tools or frameworks
+o Always use the same scoring logic for fairness and consistency
 6. Strengths & Weaknesses
 o Summarize the project's technical strengths.
 (Call out if the project or technology can be tagged as an Experian integration pattern that other Business partners can reuse.)
@@ -629,6 +728,66 @@ class AzureAssistantClient:
         return results
 
 
+def parse_assessment_scores(response_text: str) -> Optional[Dict[str, Any]]:
+    """
+    Parse structured assessment scores from the assistant's response.
+    
+    Extracts the JSON block wrapped in ```assessment_scores markers.
+    
+    Args:
+        response_text: The full response text from the assistant
+        
+    Returns:
+        Parsed scoring dictionary or None if not found/invalid
+    """
+    try:
+        # Match the assessment_scores code block
+        pattern = r'```assessment_scores\s*\n([\s\S]*?)\n```'
+        match = re.search(pattern, response_text)
+        
+        if match:
+            json_str = match.group(1).strip()
+            scores = json.loads(json_str)
+            logger.info(f"Successfully parsed assessment scores with {len(scores.get('categories', []))} categories")
+            return scores
+        else:
+            logger.warning("No assessment_scores block found in response")
+            return None
+            
+    except json.JSONDecodeError as e:
+        logger.error(f"Failed to parse assessment scores JSON: {e}")
+        return None
+    except Exception as e:
+        logger.error(f"Error parsing assessment scores: {e}")
+        return None
+
+
+def extract_response_sections(response_text: str) -> Dict[str, Any]:
+    """
+    Extract and structure different sections from the assistant's response.
+    
+    Separates the markdown content from the structured scoring data.
+    
+    Args:
+        response_text: The full response text from the assistant
+        
+    Returns:
+        Dictionary with 'markdown_content', 'scores', and 'raw_response'
+    """
+    # Parse structured scores
+    scores = parse_assessment_scores(response_text)
+    
+    # Remove the assessment_scores block from markdown for cleaner display
+    pattern = r'```assessment_scores\s*\n[\s\S]*?\n```'
+    markdown_content = re.sub(pattern, '', response_text).strip()
+    
+    return {
+        "markdown_content": markdown_content,
+        "scores": scores,
+        "raw_response": response_text
+    }
+
+
 def load_standard_file_ids() -> List[str]:
     """
     Load standard file IDs from the standard_files.json config.
@@ -724,9 +883,14 @@ async def run_assessment(
             assistant_id=assistant_id
         )
         
+        # Extract structured sections from the response
+        structured_response = extract_response_sections(response_text)
+        
         return {
             "success": True,
-            "assessment": response_text,
+            "assessment": structured_response["markdown_content"],
+            "scores": structured_response["scores"],
+            "raw_response": structured_response["raw_response"],
             "thread_id": thread_id,
             "images_analyzed": len(uploaded_file_ids),
             "standards_used": len(standard_file_ids)

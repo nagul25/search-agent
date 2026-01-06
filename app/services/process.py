@@ -157,7 +157,9 @@ class QueryProcessorService:
                 return {
                     "message": assessment_result.get("assessment"),
                     "assessment": assessment_result.get("assessment"),
+                    "scores": assessment_result.get("scores"),
                     "images_analyzed": assessment_result.get("images_analyzed", 0),
+                    "standards_used": assessment_result.get("standards_used", 0),
                     "thread_id": assessment_result.get("thread_id"),
                     "upload_info": file_uploaded_response
                 }
