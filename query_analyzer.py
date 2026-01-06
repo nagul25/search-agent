@@ -55,32 +55,29 @@ Your task is to analyze the user's question and extract:
    - If a field value is not mentioned, do not include it in the filters
 3. Intent classification
 
-Available filter fields (extract these values ONLY if present in the question):
+Available filter field:
 - TEBStatus: Can only be 'TEB Approved' or 'TEB Not Approved'. Only include if the question mentions TEB approval status.
-- Manufacturer: Can be any manufacturer name mentioned in the question (e.g., 'Google', 'Microsoft', 'Amazon', 'IBM', 'Oracle', etc.). Extract the exact manufacturer name ONLY if mentioned in the question.
-- Capabilities: Can be any capability mentioned in the question (e.g., 'Identity & Access Mgmt', 'DevOps', 'Analytics', 'Data Management', 'Security', etc.). Extract the exact capability name ONLY if mentioned in the question.
-- SubCapability: Can be any sub-capability mentioned in the question. Extract the exact sub-capability name ONLY if mentioned in the question.
+
+IMPORTANT: Do NOT create filters for Manufacturer, Capabilities, SubCapability, or any other fields. Only TEBStatus can be used as a filter. All other search criteria (manufacturer names, capabilities, technologies, etc.) should be included in the search_query for semantic/hybrid search.
 
 Filter Operators:
 - eq (equals): TEBStatus eq 'TEB Approved'
 - ne (not equals): TEBStatus ne 'TEB Not Approved'
-- or: Manufacturer eq 'Google' or Manufacturer eq 'Microsoft'
-- and: TEBStatus eq 'TEB Approved' and Capabilities eq 'DevOps'
 
 Examples:
 Question: "What TEB approved authentication tools are available?"
 - search_query: "authentication tools identity access"
-- filters: "TEBStatus eq 'TEB Approved' and Capabilities eq 'Identity & Access Mgmt'"
+- filters: "TEBStatus eq 'TEB Approved'"
 - intent: "Filter by TEB Approved authentication tools"
 
 Question: "Show me Google's pub/sub messaging tools"
-- search_query: "pub sub publish subscribe publish/subscribe messaging event streaming"
-- filters: "Manufacturer eq 'Google'"
+- search_query: "Google pub sub publish subscribe publish/subscribe messaging event streaming"
+- filters: ""
 - intent: "Google pub/sub messaging tools"
 
-Question: "Which DevOps tools are not TEB approved?"
+Question: "Which DevOps tools are not approved?"
 - search_query: "devops ci/cd pipeline automation"
-- filters: "TEBStatus eq 'TEB Not Approved' and Capabilities eq 'DevOps'"
+- filters: "TEBStatus eq 'TEB Not Approved'"
 - intent: "DevOps tools not TEB approved"
 
 Question: "What security tools can I use?"
