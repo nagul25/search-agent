@@ -25,7 +25,7 @@ class AzureSearchDataIngestion:
         # Azure AI Search configuration
         self.search_endpoint = os.getenv("AZURE_SEARCH_ENDPOINT")
         self.search_key = os.getenv("AZURE_SEARCH_KEY")
-        self.search_index_name = "technology-tools-index"
+        self.search_index_name = "mahaaya-technology-standards-index"
         
         # Azure OpenAI configuration for embeddings
         self.openai_api_key = os.getenv("OPENAI_API_KEY")
@@ -89,6 +89,12 @@ class AzureSearchDataIngestion:
             print(f"Error creating embedding: {str(e)}")
             return []
     
+    def _sanitize_value(self, value) -> str:
+        """Sanitize a value for JSON serialization - handles NaN, None, and converts to string"""
+        if pd.isna(value) or value is None:
+            return ""
+        return str(value).strip()
+    
     def process_csv_data(self, csv_file_path: str) -> List[Dict[str, Any]]:
         """Process CSV data and prepare for indexing"""
         try:
@@ -99,38 +105,54 @@ class AzureSearchDataIngestion:
             documents = []
             
             for index, row in df.iterrows():
+                # Sanitize all field values
+                name_of_tools = self._sanitize_value(row.get('NameofTools'))
+                capabilities = self._sanitize_value(row.get('Capabilities'))
+                sub_capability = self._sanitize_value(row.get('SubCapability'))
+                manufacturer = self._sanitize_value(row.get('Manufacturer'))
+                teb_status = self._sanitize_value(row.get('TEBStatus'))
+                tool_description = self._sanitize_value(row.get('ToolDescription'))
+                meta_tags = self._sanitize_value(row.get('MetaTags'))
+                meta_tags_description = self._sanitize_value(row.get('MetaTagsDescription'))
+                standards_comments = self._sanitize_value(row.get('StandardsComments'))
+                ea_notes = self._sanitize_value(row.get('EANotes'))
+                capability_manager = self._sanitize_value(row.get('CapabilityManager'))
+                version = self._sanitize_value(row.get('Version'))
+                standard_category = self._sanitize_value(row.get('StandardCategory'))
+                ea_reference_id = self._sanitize_value(row.get('EAReferenceID'))
+                
                 # Create combined text for embedding
                 combined_text = f"""
-                Tool: {row.get('NameofTools', '')}
-                Capability: {row.get('Capabilities', '')}
-                Sub-capability: {row.get('SubCapability', '')}
-                Manufacturer: {row.get('Manufacturer', '')}
-                TEB Status: {row.get('TEBStatus', '')}
-                Description: {row.get('Description', '')}
-                Meta Tags: {row.get('MetaTags', '')}
-                Meta Tags Description: {row.get('MetaTagsDescription', '')}
-                Standards Comments: {row.get('StandardsComments', '')}
-                EA Notes: {row.get('EANotes', '')}
-                Capability Manager: {row.get('CapabilityManager', '')}
+                Tool: {name_of_tools}
+                Capability: {capabilities}
+                Sub-capability: {sub_capability}
+                Manufacturer: {manufacturer}
+                TEB Status: {teb_status}
+                Description: {tool_description}
+                Meta Tags: {meta_tags}
+                Meta Tags Description: {meta_tags_description}
+                Standards Comments: {standards_comments}
+                EA Notes: {ea_notes}
+                Capability Manager: {capability_manager}
                 """.strip()
                 
                 # Create document for Azure AI Search
                 doc = {
                     "id": str(uuid.uuid4()),
-                    "Capabilities": row.get('Capabilities', ''),
-                    "SubCapability": row.get('SubCapability', ''),
-                    "TEBStatus": row.get('TEBStatus', ''),
-                    "NameofTools": row.get('NameofTools', ''),
-                    "Version": row.get('Version', ''),
-                    "StandardsComments": row.get('StandardsComments', ''),
-                    "EANotes": row.get('EANotes', ''),
-                    "Manufacturer": row.get('Manufacturer', ''),
-                    "StandardCategory": row.get('StandardCategory', ''),
-                    "EAReferenceID": row.get('EAReferenceID', ''),
-                    "Description": row.get('Description', ''),
-                    "MetaTags": row.get('MetaTags', ''),
-                    "MetaTagsDescription": row.get('MetaTagsDescription', ''),
-                    "CapabilityManager": row.get('CapabilityManager', ''),
+                    "Capabilities": capabilities,
+                    "SubCapability": sub_capability,
+                    "TEBStatus": teb_status,
+                    "NameofTools": name_of_tools,
+                    "Version": version,
+                    "StandardsComments": standards_comments,
+                    "EANotes": ea_notes,
+                    "Manufacturer": manufacturer,
+                    "StandardCategory": standard_category,
+                    "EAReferenceID": ea_reference_id,
+                    "Description": tool_description,
+                    "MetaTags": meta_tags,
+                    "MetaTagsDescription": meta_tags_description,
+                    "CapabilityManager": capability_manager,
                     "combined_text": combined_text
                 }
                 
@@ -258,7 +280,7 @@ class AzureSearchDataIngestion:
                 print(f"Downloading CSV from blob: {blob_name}")
                 csv_file_path = self.download_csv_from_blob(blob_name)
             elif not csv_file_path:
-                csv_file_path = "technology_standard_list.csv"
+                csv_file_path = "Enterprise_Technology_Standards_Sample_Data V1.csv"
             
             # Step 3: Process CSV data
             documents = self.process_csv_data(csv_file_path)
@@ -279,7 +301,7 @@ def main():
         ingestion = AzureSearchDataIngestion()
         
         # Run ingestion with local CSV file
-        ingestion.run_full_ingestion(csv_file_path="technology_standard_list.csv")
+        ingestion.run_full_ingestion(csv_file_path="Enterprise_Technology_Standards_Sample_Data V1.csv")
         
         # Alternative: Run ingestion with blob storage
         # ingestion.run_full_ingestion(blob_name="technology_standard_list.csv")

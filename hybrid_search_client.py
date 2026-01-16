@@ -25,7 +25,7 @@ class HybridSearchClient:
         # Azure AI Search configuration
         self.search_endpoint = os.getenv("AZURE_SEARCH_ENDPOINT")
         self.search_key = os.getenv("AZURE_SEARCH_KEY")
-        self.search_index_name = "technology-tools-index"
+        self.search_index_name = "mahaaya-technology-standards-index"
         
         # Azure OpenAI configuration for embeddings
         self.openai_api_key = os.getenv("OPENAI_API_KEY")

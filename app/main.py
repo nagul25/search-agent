@@ -5,7 +5,7 @@ from rate_limiter import rate_limiter
 
 
 app = FastAPI(
-    title="Experian POC API",
+    title="Mahaaya POC API",
     version="1.0.0",
 )
 
