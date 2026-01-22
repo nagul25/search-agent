@@ -221,9 +221,8 @@ o Outline required approvals, extra documentation, or TEB/RSQ/PSA reviews.
 o Indicate GenAI Council involvement if relevant.
 o Suggest additional technical improvements (not repeating items already in weaknesses).
 9. Final Assessment Reminder
-o State: "This is a preliminary assessment; an EA will review it and confirm it; in the meantime,
-| you can download the report for the analysis done."
-o Provide a link to download the report.
+o State: "This is a preliminary assessment; an EA will review it and confirm it"
+
 
 Tone & Format Requirements
 * Write concisely to reduce screen scrolling.
