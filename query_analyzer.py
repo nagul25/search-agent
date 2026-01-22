@@ -56,29 +56,42 @@ Your task is to analyze the user's question and extract:
 3. Intent classification
 
 Available filter field:
-- TEBStatus: Can only be 'TEB Approved' or 'TEB Not Approved'. Only include if the question mentions TEB approval status.
+- TEBStatus: Valid values are 'Approved', 'Conditional', 'UnderReview', 'Deprecated', 'Exception'. Only include if the question mentions TEB/approval status.
 
 IMPORTANT: Do NOT create filters for Manufacturer, Capabilities, SubCapability, or any other fields. Only TEBStatus can be used as a filter. All other search criteria (manufacturer names, capabilities, technologies, etc.) should be included in the search_query for semantic/hybrid search.
 
 Filter Operators:
-- eq (equals): TEBStatus eq 'TEB Approved'
-- ne (not equals): TEBStatus ne 'TEB Not Approved'
+- eq (equals): TEBStatus eq 'Approved'
+- ne (not equals): TEBStatus ne 'Deprecated'
+- or (multiple values): TEBStatus eq 'Approved' or TEBStatus eq 'Conditional'
+
+Status meanings:
+- Approved: Fully approved for use
+- Conditional: Approved with conditions/restrictions
+- UnderReview: Currently under evaluation
+- Deprecated: Should not be used for new projects
+- Exception: Approved as an exception case
 
 Examples:
-Question: "What TEB approved authentication tools are available?"
+Question: "What approved authentication tools are available?"
 - search_query: "authentication tools identity access"
-- filters: "TEBStatus eq 'TEB Approved'"
-- intent: "Filter by TEB Approved authentication tools"
+- filters: "TEBStatus eq 'Approved'"
+- intent: "Filter by Approved authentication tools"
 
 Question: "Show me Google's pub/sub messaging tools"
 - search_query: "Google pub sub publish subscribe publish/subscribe messaging event streaming"
 - filters: ""
 - intent: "Google pub/sub messaging tools"
 
-Question: "Which DevOps tools are not approved?"
+Question: "Which DevOps tools are deprecated?"
 - search_query: "devops ci/cd pipeline automation"
-- filters: "TEBStatus eq 'TEB Not Approved'"
-- intent: "DevOps tools not TEB approved"
+- filters: "TEBStatus eq 'Deprecated'"
+- intent: "Deprecated DevOps tools"
+
+Question: "What tools are under review?"
+- search_query: "tools technology"
+- filters: "TEBStatus eq 'UnderReview'"
+- intent: "Tools currently under review"
 
 Question: "What security tools can I use?"
 - search_query: "security compliance governance"

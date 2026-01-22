@@ -82,7 +82,7 @@ class HybridSearchClient:
         
         Args:
             query: Search query text
-            filters: OData filter expression (e.g., "teb_status eq 'TEB Approved'")
+            filters: OData filter expression (e.g., "teb_status eq 'Approved'")
             top: Number of results to return (default: 50)
             select_fields: Fields to return in results
         """
@@ -304,9 +304,9 @@ class HybridSearchClient:
         print("=" * 50)
         
         # Example 1: Filter by TEB Status
-        print("\n1. Filter by TEB Status - TEB Approved tools:")
-        result = self.filter_search("TEBStatus eq 'TEB Approved'")
-        print(f"Found {result.get('total_count', 0)} TEB Approved tools")
+        print("\n1. Filter by TEB Status - Approved tools:")
+        result = self.filter_search("TEBStatus eq 'Approved'")
+        print(f"Found {result.get('total_count', 0)} Approved tools")
         for i, doc in enumerate(result.get('results', [])[:3]):
             print(f"  {i+1}. {doc.get('NameofTools')} - {doc.get('Manufacturer')}")
         
@@ -324,13 +324,13 @@ class HybridSearchClient:
         for i, doc in enumerate(result.get('results', [])[:3]):
             print(f"  {i+1}. {doc.get('NameofTools')} - {doc.get('Capabilities')}")
         
-        # Example 4: Hybrid search with filter - TEB Approved pub/sub tools
-        print("\n4. Hybrid search with filter - TEB Approved pub/sub tools:")
+        # Example 4: Hybrid search with filter - Approved pub/sub tools
+        print("\n4. Hybrid search with filter - Approved pub/sub tools:")
         result = self.hybrid_search(
             "pub sub messaging", 
-            filters="TEBStatus eq 'TEB Approved'"
+            filters="TEBStatus eq 'Approved'"
         )
-        print(f"Found {result.get('total_count', 0)} TEB Approved pub/sub tools")
+        print(f"Found {result.get('total_count', 0)} Approved pub/sub tools")
         for i, doc in enumerate(result.get('results', [])[:3]):
             print(f"  {i+1}. {doc.get('NameofTools')} - {doc.get('Manufacturer')}")
         

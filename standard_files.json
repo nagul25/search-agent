@@ -1,17 +1,7 @@
 {
   "assistant_id": "asst_KffzhGzCNyW2oAsxlMHExTnG",
-  "files": [
-    "assistant-QrZaEQRH9iGbJRopsUEMcM",
-    "assistant-GWBAEwF542xbb9hd44Rnhz",
-    "assistant-XcCrZMdsQnMP9Lh3TGiZyX",
-    "assistant-GQ1EzQsFudFF7c8ECRtd1C"
-  ],
-  "file_mapping": {
-    "Experian-Cloud-Principles.pdf": "assistant-QrZaEQRH9iGbJRopsUEMcM",
-    "Experian-General-Knowledge.pdf": "assistant-GWBAEwF542xbb9hd44Rnhz",
-    "EA-Assessment-Category.pdf": "assistant-XcCrZMdsQnMP9Lh3TGiZyX",
-    "Experian-EA-Principles.pdf": "assistant-GQ1EzQsFudFF7c8ECRtd1C"
-  },
+  "files": [],
+  "file_mapping": {},
   "model": "gpt-5-mini",
   "created_at": "2025-12-19T09:14:25.658627"
 }
